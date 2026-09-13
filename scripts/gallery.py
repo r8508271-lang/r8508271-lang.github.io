@@ -108,7 +108,7 @@ def render(entries: list[dict], template: str) -> str:
         <p class="description">{body}</p>
       </div>
     </article>''')
-    content = "\n".join(sections) if sections else '    <p class="empty">Videos will appear here as results are added.</p>'
+    content = "\n".join(sections)
     if template.count("<!-- GALLERY_ENTRIES -->") != 1:
         raise GalleryError("The HTML template must contain exactly one gallery marker.")
     return template.replace("<!-- GALLERY_ENTRIES -->", content)
