@@ -188,6 +188,17 @@ class IdentityTests(unittest.TestCase):
         with self.assertRaises(gallery.GalleryError):
             publisher.validate_origin(self.root)
 
+    def test_deleted_private_config_still_blocks_history(self):
+        private = self.root / ".local/config.json"
+        private.parent.mkdir()
+        private.write_text('{"drive_folder":"private-example-id"}')
+        publisher.git(self.root, "add", ".local/config.json")
+        self.commit()
+        publisher.git(self.root, "rm", ".local/config.json")
+        self.commit()
+        with self.assertRaisesRegex(gallery.GalleryError, "private configuration/cache path"):
+            publisher.audit(self.root)
+
 
 if __name__ == "__main__":
     unittest.main()

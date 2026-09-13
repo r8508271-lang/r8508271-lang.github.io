@@ -52,6 +52,13 @@ def audit(root: Path) -> None:
         if re.search(r"(?:co-authored-by|signed-off-by|on-behalf-of):", message, re.I):
             raise GalleryError(f"Commit {commit[:12]} contains an identity trailer; review it locally.")
         check_public_text(message)
+        paths = git(root, "ls-tree", "-r", "--name-only", "-z", commit).split("\0")
+        for path in filter(None, paths):
+            parts = Path(path).parts
+            if any(part in {".local", "rclone.conf"} or part == ".env" or
+                   (part.startswith(".env.") and part != ".env.example") or
+                   part.endswith(".local.json") for part in parts):
+                raise GalleryError(f"Commit {commit[:12]} contains a private configuration/cache path, even if later deleted. Review the history before publishing.")
     for tag in git(root, "for-each-ref", "--format=%(objecttype)", "refs/tags").splitlines():
         if tag == "tag":
             raise GalleryError("Annotated tags can expose tagger identities. Review them before publishing.")

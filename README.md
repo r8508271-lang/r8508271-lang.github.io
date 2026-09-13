@@ -123,7 +123,8 @@ git config --local tag.gpgsign false
 
 发布命令进一步固定 author/committer 和 UTC 提交时间，并禁用自动签名和提交 hooks，
 避免个人签名或自动附加的身份信息。它会获取并检查所有可达的分支/标签历史、作者、
-提交者、签名和身份 trailer。浅克隆、非匿名提交或 annotated tags 会阻止发布。
+提交者、签名、身份 trailer，以及历史中误提交的 `.local/`、环境配置等私人文件。
+即使后来删除了私人配置，旧提交仍会被拦截。浅克隆、非匿名提交或 annotated tags 会阻止发布。
 它不会自动重写、强推或删除历史。
 
 推送前，还会调用 GitHub `/user` 验证凭证属于 **r8508271-lang**，并将同一凭证用于推送。
