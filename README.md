@@ -57,8 +57,10 @@ Watch how it changes the tool orientation to collect and release the load.
 
 这是软性要求：缺少推荐字段只提示，不阻止构建。旧的“标题 + 描述”格式仍支持。
 但填写来源字段后必须用单独一行 `Description:` 分隔正文，以防误公开内部来源。
-**来源字段只留在 Drive 的 TXT 和本地下载缓存，不进入公开 HTML 或 Git 历史。**
-网站只显示第一行标题和 `Description:` 后的正文。GIF、MP4、MOV、WebM 共用这个格式。
+网站显示标题、`Method`、`Seed`（标为 Replicate seed）、`Eval-seed`、`Episode` 和正文。
+方法只显示 White box、Black box 或 GenPlan，seed 与 episode 只显示有效整数。
+**`Source` 和 `Result` 原始路径只留在 Drive TXT 和本地缓存，不进入公开 HTML 或 Git 历史。**
+GIF、MP4、MOV、WebM 共用这个格式。
 
 ## 本地配置（只需一次）
 
@@ -115,11 +117,42 @@ python3 scripts/gallery.py publish --source /path/to/gallery-submissions
 重复命名、未上传完成的条目或损坏媒体会阻止本次构建，不会静默发布不完整页面。
 
 脚本压缩为最长宽度 1280 的 H.264 MP4，并生成封面图；相同源文件复用本地编码缓存。
-页面不自动播放，也不预加载整段视频，手机会自动改成上下布局。
+页面不自动播放，也不预加载整段视频；桌面每行三张卡片，中等屏幕两列，手机一列。
 单个输出限制为 95 MiB、整组媒体限制为 900 MiB，为
 [GitHub 文件限制](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)
 和 [Pages 的 1 GB 站点上限](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits)
 留出空间。长期大量视频会累积 Git 历史，适合精选的短结果集。
+
+## 本地每分钟自动更新（不经过 GPT）
+
+在 Linux 上，先手动运行并验证 `python3 scripts/gallery.py publish`，然后安装用户级 systemd timer：
+
+```bash
+python3 scripts/install_timer.py
+```
+
+timer 直接运行 `python3 scripts/gallery.py publish --scheduled`，不调用 GPT、Codex 或其他模型，
+无需保持 Codex 打开。电脑需开机联网、用户的 systemd 会话需运行；休眠期间暂停，恢复后继续检查。
+凭证和配置复用本机已验证的设置，日志保存在本机 journal。
+
+每分钟同步检查一次 Drive；无变化就跳过 GitHub 认证、提交和部署。
+有变化时，两次自动发布至少相隔 10 分钟，等待期间的变更合并到下一次发布。
+这给 [GitHub Pages 每小时 10 次构建的软限制](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits)
+留出余量。手动 `publish` 可立即发布，并重新开始自动发布间隔。
+遇到不完整上传、无效素材或本地源代码未提交的修改时，本轮失败并记录日志；下轮重试，
+不会自动修改代码或覆盖远端历史。运行互斥锁在进程退出后自动释放。
+
+```bash
+# 查看 timer 和最近运行日志
+systemctl --user status anonymous-gallery-sync.timer
+journalctl --user -u anonymous-gallery-sync.service -n 30 --no-pager
+
+# 停止后续检查（已开始的一次任务会继续完成）
+systemctl --user disable --now anonymous-gallery-sync.timer
+
+# 恢复
+systemctl --user enable --now anonymous-gallery-sync.timer
+```
 
 ## 匿名提交与部署
 

@@ -80,6 +80,20 @@ class GalleryTests(unittest.TestCase):
         self.assertEqual((title, body), ("Title", "Public explanation."))
         self.assertIn("source, method, result, seed", warnings[0])
 
+    def test_only_safe_metadata_reaches_the_page(self):
+        self.entry(description="Title\nSource: /home/person/video.mp4\nResult: private/run\n"
+                   "Method: white_box\nSeed: 222\nEval-seed: 2396529055829695215\n"
+                   "Episode: 99\nDescription:\nVisible description.")
+        identifier, title, body, _, metadata = gallery.submissions(self.source)[0]
+        page = gallery.render([{"id": identifier, "title": title, "description": body,
+                              "metadata": metadata, "src": "media/a.mp4", "poster": "media/a.jpg"}],
+                              "<!-- GALLERY_ENTRIES -->")
+        for value in ["White box", "222", "2396529055829695215", "99", "Visible description."]:
+            self.assertIn(value, page)
+        for value in ["/home/person", "private/run", "Source", "Result"]:
+            self.assertNotIn(value, page)
+        self.assertEqual(gallery.public_metadata({"method": "person@example.org", "seed": "<script>"}), {})
+
     def test_metadata_without_separator_cannot_leak(self):
         with self.assertRaisesRegex(gallery.GalleryError, "Add Description:"):
             gallery.parse_description("Title\nSource: internal/run\nMethod: white_box\nSome prose")
@@ -209,6 +223,47 @@ class IdentityTests(unittest.TestCase):
         publisher.git(self.root, "remote", "add", "origin", "https://github.com/another/repo.git")
         with self.assertRaises(gallery.GalleryError):
             publisher.validate_origin(self.root)
+
+    def prepare_published(self):
+        publisher.git(self.root, "remote", "add", "origin", publisher.REMOTE)
+        self.commit()
+        publisher.git(self.root, "update-ref", "refs/remotes/origin/main", "HEAD")
+
+    def test_unchanged_scheduled_run_never_authenticates(self):
+        self.prepare_published()
+        with patch.object(publisher, "credential", side_effect=AssertionError("Unexpected network access")):
+            publisher.publish(self.root, scheduled=True)
+        self.assertFalse((self.root / ".local/publish-state.json").exists())
+
+    def test_scheduled_changes_wait_for_cooldown(self):
+        self.prepare_published()
+        (self.root / "index.html").write_text("Updated gallery")
+        (self.root / ".local").mkdir()
+        state = self.root / ".local/publish-state.json"
+        state.write_text('{"last_push": 1000}')
+        with patch.object(publisher.time, "time", return_value=1100), patch.object(
+            publisher, "credential", side_effect=AssertionError("Unexpected network access")):
+            publisher.publish(self.root, scheduled=True)
+        self.assertEqual(json.loads(state.read_text())["last_push"], 1000)
+        # A failed credential after the cooldown leaves the pending output retryable.
+        with patch.object(publisher.time, "time", return_value=1600), patch.object(
+            publisher, "credential", side_effect=gallery.GalleryError("Unavailable")):
+            with self.assertRaisesRegex(gallery.GalleryError, "Unavailable"):
+                publisher.publish(self.root, scheduled=True)
+        self.assertEqual(json.loads(state.read_text())["last_push"], 1000)
+        self.assertTrue(publisher.pending_changes(self.root))
+
+    def test_timer_does_not_publish_active_source_edits(self):
+        self.prepare_published()
+        (self.root / "README.md").write_text("Work in progress")
+        with patch.object(publisher, "credential", side_effect=AssertionError("Unexpected authentication")):
+            with self.assertRaisesRegex(gallery.GalleryError, "source files have local edits"):
+                publisher.publish(self.root, scheduled=True)
+
+    def test_unpushed_commit_is_retried(self):
+        self.prepare_published()
+        self.commit("Update pending gallery")
+        self.assertTrue(publisher.pending_changes(self.root))
 
     def test_deleted_private_config_still_blocks_history(self):
         private = self.root / ".local/config.json"

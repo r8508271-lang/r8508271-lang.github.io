@@ -1,17 +1,23 @@
 :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #24282e; background: #fff; }
 * { box-sizing: border-box; }
-body { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
-.page-header { padding: 76px 0 38px; border-bottom: 1px solid #e1e4e8; }
-h1 { margin: 0; font-size: clamp(36px, 6vw, 46px); line-height: 1.15; font-weight: 600; letter-spacing: -.045em; }
-.entry { display: grid; grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr); gap: 34px; padding: 36px 0; border-bottom: 1px solid #e1e4e8; align-items: start; }
-.entry video { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; background: #f3f4f5; border: 1px solid #e9ebee; border-radius: 5px; }
-.entry-number { margin: 2px 0 13px; font-size: 11px; font-weight: 600; letter-spacing: .1em; color: #757e87; }
-h2 { margin: 0 0 14px; font-size: 21px; line-height: 1.35; font-weight: 600; letter-spacing: -.02em; overflow-wrap: anywhere; }
-.description { margin: 0 0 12px; font-size: 15px; line-height: 1.75; color: #59616b; white-space: pre-wrap; overflow-wrap: anywhere; }
-.empty { padding: 65px 0 85px; color: #69717a; font-size: 15px; }
-@media (max-width: 720px) {
-  body { padding: 0 22px; }
-  .page-header { padding: 43px 0 28px; }
-  .entry { grid-template-columns: 1fr; gap: 22px; padding: 28px 0; }
-  h2 { font-size: 20px; }
+body { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+.page-header { padding: 40px 0 24px; border-bottom: 1px solid #e1e4e8; }
+h1 { margin: 0; font-size: 32px; line-height: 1.15; font-weight: 600; letter-spacing: -.04em; }
+#gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 24px; padding: 26px 0 48px; align-items: start; }
+.entry { min-width: 0; padding-bottom: 20px; border-bottom: 1px solid #e1e4e8; }
+.entry video { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; background: #f3f4f5; border: 1px solid #e9ebee; border-radius: 4px; }
+.entry-copy { padding-top: 13px; }
+.entry-number { margin: 0 0 7px; font-size: 10px; font-weight: 600; letter-spacing: .1em; color: #757e87; }
+h2 { margin: 0 0 10px; font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: -.015em; overflow-wrap: anywhere; }
+.metadata { display: grid; gap: 3px; margin: 0 0 12px; font-size: 11px; line-height: 1.5; color: #69717a; }
+.metadata div { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 6px; }
+.metadata dt { font-weight: 500; }
+.metadata dd { margin: 0; color: #414953; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.description { margin: 0; font-size: 12px; line-height: 1.65; color: #59616b; white-space: pre-wrap; overflow-wrap: anywhere; }
+@media (max-width: 900px) { #gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) {
+  body { padding: 0 20px; }
+  .page-header { padding: 28px 0 20px; }
+  h1 { font-size: 28px; }
+  #gallery { grid-template-columns: 1fr; gap: 24px; padding-top: 22px; }
 }

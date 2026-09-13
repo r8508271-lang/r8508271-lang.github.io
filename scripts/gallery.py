@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import fcntl
 import hashlib
 import html
 import json
@@ -99,7 +100,22 @@ def parse_description(text: str) -> tuple[str, str, dict[str, str], list[str]]:
     return title, body, provenance, warnings
 
 
-def submissions(source: Path) -> list[tuple[str, str, str, Path]]:
+def public_metadata(provenance: dict[str, str]) -> dict[str, str]:
+    """Publish only recognized methods and numeric seeds, never source paths."""
+    metadata = {}
+    method = provenance.get("method", "").lower().replace(" ", "_").replace("-", "_")
+    labels = {"white_box": "White box", "whitebox": "White box",
+              "black_box": "Black box", "blackbox": "Black box", "genplan": "GenPlan"}
+    if method in labels:
+        metadata["Method"] = labels[method]
+    for key, label in [("seed", "Replicate seed"), ("eval-seed", "Eval seed"), ("episode", "Episode")]:
+        value = provenance.get(key, "")
+        if re.fullmatch(r"[0-9]{1,40}", value):
+            metadata[label] = value
+    return metadata
+
+
+def submissions(source: Path) -> list[tuple[str, str, str, Path, dict[str, str]]]:
     if not source.is_dir() or source.is_symlink():
         raise GalleryError("The source must be an existing, non-symlink directory.")
     result = []
@@ -119,11 +135,11 @@ def submissions(source: Path) -> list[tuple[str, str, str, Path]]:
             raise GalleryError("A submission is incomplete: every folder needs media and description.txt. Finish it or prefix its folder with _.")
         if description.stat().st_size > 32_000:
             raise GalleryError("description.txt must be smaller than 32 KB.")
-        title, body, _, warnings = parse_description(description.read_text(encoding="utf-8-sig"))
+        title, body, provenance, warnings = parse_description(description.read_text(encoding="utf-8-sig"))
         for warning in warnings:
             print(f"Note: submission {len(result) + 1}: {warning}.", file=sys.stderr)
         public_id = hashlib.sha256(directory.name.encode()).hexdigest()[:16]
-        result.append((public_id, title, body, video))
+        result.append((public_id, title, body, video, public_metadata(provenance)))
     return result
 
 
@@ -139,6 +155,9 @@ def render(entries: list[dict], template: str) -> str:
     sections = []
     for number, item in enumerate(entries, 1):
         title, body = html.escape(item["title"]), html.escape(item["description"])
+        fields = "".join(f"<div><dt>{html.escape(key)}</dt><dd>{html.escape(value)}</dd></div>"
+                         for key, value in item.get("metadata", {}).items())
+        metadata = f'<dl class="metadata">{fields}</dl>' if fields else ""
         sections.append(f'''    <article class="entry" id="result-{item['id']}">
       <video controls playsinline muted preload="none" poster="{item['poster']}" aria-label="{title}">
         <source src="{item['src']}" type="video/mp4">
@@ -147,6 +166,7 @@ def render(entries: list[dict], template: str) -> str:
       <div class="entry-copy">
         <p class="entry-number">{number:02d}</p>
         <h2>{title}</h2>
+        {metadata}
         <p class="description">{body}</p>
       </div>
     </article>''')
@@ -168,7 +188,7 @@ def build(source: Path, *, root: Path = ROOT, ffmpeg: str = "ffmpeg", allow_empt
         stage = Path(temp)
         media = stage / "media"
         media.mkdir()
-        for public_id, title, body, video in items:
+        for public_id, title, body, video, metadata in items:
             fingerprint = digest(video)
             filename = fingerprint + ".mp4"
             encoded = cache / filename
@@ -196,6 +216,7 @@ def build(source: Path, *, root: Path = ROOT, ffmpeg: str = "ffmpeg", allow_empt
                 pending_poster.replace(poster)
             shutil.copyfile(poster, media / poster.name)
             entries.append({"id": public_id, "title": title, "description": body,
+                            "metadata": metadata,
                             "src": "media/" + filename, "poster": "media/" + poster.name})
         if sum(p.stat().st_size for p in media.iterdir()) > MAX_GALLERY:
             raise GalleryError("Gallery media exceeds the 900 MiB budget. Reduce the collection before publishing.")
@@ -261,16 +282,21 @@ def main() -> None:
     parser.add_argument("--source", type=Path, help="Build or publish already-downloaded submissions")
     parser.add_argument("--ffmpeg", help="FFmpeg executable")
     parser.add_argument("--allow-empty", action="store_true", help="Intentionally publish an empty gallery")
+    parser.add_argument("--scheduled", action="store_true", help="Skip unchanged content and limit automatic publishing to once per 10 minutes")
     args = parser.parse_args()
-    from publish import audit, publish
+    from publish import audit, publish, check_scheduled_tree
     # Prevent two local sync/build/publish processes from racing.
     (ROOT / ".local").mkdir(exist_ok=True)
-    lock = ROOT / ".local/run.lock"
+    lock = (ROOT / ".local/run.lock").open("a")
     try:
-        lock.mkdir()
-    except FileExistsError:
-        parser.exit(1, "Another gallery command is running. If it crashed, remove .local/run.lock and retry.\n")
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        parser.exit(0 if args.scheduled else 1, "Another gallery command is running; skipped.\n")
     try:
+        if args.scheduled:
+            if args.command != "publish" or args.allow_empty:
+                raise GalleryError("--scheduled requires publish and cannot clear an empty gallery.")
+            check_scheduled_tree(ROOT)
         if args.command == "audit":
             audit(ROOT)
             print("Commit identities and messages passed the automatic audit. Review visible content separately.")
@@ -282,13 +308,13 @@ def main() -> None:
         count = build(source, ffmpeg=args.ffmpeg or config.get("ffmpeg", "ffmpeg"), allow_empty=args.allow_empty)
         print(f"Built {count} videos. Preview with: python3 -m http.server 8000 --bind 127.0.0.1")
         if args.command == "publish":
-            publish(ROOT)
+            publish(ROOT, scheduled=args.scheduled)
     except (GalleryError, OSError, ValueError, KeyError) as error:
         # OSError can include private absolute paths; details remain local.
         message = str(error) if isinstance(error, GalleryError) else "Invalid configuration, submission data or local file operation. Check the input and retry."
         parser.exit(1, message + "\n")
     finally:
-        lock.rmdir()
+        lock.close()
 
 
 if __name__ == "__main__":

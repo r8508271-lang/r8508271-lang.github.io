@@ -119,8 +119,38 @@ def authenticated_git(token: str):
         yield env
 
 
-def publish(root: Path) -> None:
+def pending_changes(root: Path) -> bool:
+    if git(root, "status", "--porcelain", "--", *PUBLIC_PATHS).strip():
+        return True
+    if not has_head(root):
+        return True
+    remote = git(root, "for-each-ref", "--format=%(objectname)", "refs/remotes/origin/main").strip()
+    return git(root, "rev-parse", "HEAD").strip() != remote
+
+
+def check_scheduled_tree(root: Path) -> None:
+    # A timer may publish generated output, but must not scoop up active code edits.
+    source_paths = [path for path in PUBLIC_PATHS if path not in {"index.html", "media"}]
+    if git(root, "status", "--porcelain", "--", *source_paths).strip():
+        raise GalleryError("Automatic update paused: source files have local edits. Review and publish them manually first.")
+    if git(root, "diff", "--cached", "--name-only").strip():
+        raise GalleryError("Automatic update paused: the index contains staged files.")
+
+
+def publish(root: Path, *, scheduled: bool = False) -> None:
     validate_origin(root)
+    if scheduled:
+        check_scheduled_tree(root)
+    if not pending_changes(root):
+        print("No changes; skipped GitHub authentication, commit and deployment.")
+        return
+    state_path = root / ".local/publish-state.json"
+    if scheduled and state_path.exists():
+        last_push = float(json.loads(state_path.read_text())["last_push"])
+        remaining = 600 - (time.time() - last_push)
+        if remaining > 0:
+            print(f"Changes ready; automatic publication deferred for {int(remaining) + 1} seconds.")
+            return
     token = credential(root)
     with authenticated_git(token) as env:
         opts = ["-c", "credential.helper=", "-c", "core.hooksPath=/dev/null"]
@@ -155,6 +185,10 @@ def publish(root: Path) -> None:
             raise GalleryError("There is no content to publish.")
         audit(root)
         git(root, *opts, "push", "--no-follow-tags", "origin", "HEAD:refs/heads/main", env=env)
+    state_path.parent.mkdir(exist_ok=True)
+    pending_state = state_path.with_suffix(".tmp")
+    pending_state.write_text(json.dumps({"last_push": time.time()}))
+    pending_state.replace(state_path)
     print("Pushed to the anonymous repository with verified anonymous credentials.")
     # Classic Pages needs no workflow and no Drive secret in GitHub Actions.
     try:
