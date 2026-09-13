@@ -26,7 +26,7 @@ Description=Synchronize the anonymous video gallery from Google Drive
 
 [Service]
 Type=oneshot
-WorkingDirectory={quote_path(ROOT)}
+WorkingDirectory={str(ROOT).replace('%', '%%')}
 ExecStart={quote_path(Path(sys.executable).resolve())} {quote_path(ROOT / 'scripts/gallery.py')} publish --scheduled
 Environment=PATH=/usr/local/bin:/usr/bin:/bin
 Environment=PYTHONUNBUFFERED=1
@@ -54,8 +54,10 @@ WantedBy=timers.target
     destination.mkdir(parents=True, exist_ok=True)
     for name, content in units.items():
         (destination / name).write_text(content)
+    subprocess.run(["systemd-analyze", "--user", "verify", *[str(destination / name) for name in units]], check=True)
     subprocess.run(["systemctl", "--user", "daemon-reload"], check=True)
     subprocess.run(["systemctl", "--user", "enable", "--now", UNIT + ".timer"], check=True)
+    subprocess.run(["systemctl", "--user", "is-active", "--quiet", UNIT + ".timer"], check=True)
     print("Local timer installed: every minute, with a 10-minute automatic publish interval.")
     print("Status: systemctl --user status " + UNIT + ".timer")
     print("Logs: journalctl --user -u " + UNIT + ".service -n 30 --no-pager")
