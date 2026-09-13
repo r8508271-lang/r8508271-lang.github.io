@@ -1,4 +1,12 @@
 Short, descriptive title
 
+Source: results/environment/run/replicate_42/videos/episode_3.gif
+Method: white_box
+Result: environment/run/replicate_42
+Seed: 42
+Eval-seed: 123456
+Episode: 3
+
+Description:
 Explain what happens in the video and why it is interesting. Describe the
 behavior or outcome so the reader knows what to look for.

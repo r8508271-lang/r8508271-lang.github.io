@@ -20,7 +20,7 @@ gallery/
 
 - 每个子文件夹只放 **一个**媒体文件，固定命名为 `video.mp4`、`video.gif`、
   `video.webm` 或 `video.mov`。GIF 和视频都支持，发布时统一转换为可播放的 MP4。
-- `description.txt` 是 UTF-8 纯文本文件，**第一行是标题，其余内容是说明**。
+- `description.txt` 是 UTF-8 纯文本文件，**第一行是标题，中间填写来源，Description: 之后是网页正文**。
   不要创建 Google Docs 文档。可复制 `submission-template/example-001/description.txt`。
 - 文件夹名必须唯一；按文件夹名称排序，建议用 `001-`、`002-` 前缀。
   公开文件名会替换为哈希，但文件夹仍建议使用中性名称。
@@ -34,9 +34,31 @@ gallery/
 ```text
 Using a hook as a shovel
 
+Source: results/environment/run/replicate_42/videos/episode_3.gif
+Method: white_box
+Result: environment/run/replicate_42
+Seed: 42
+Eval-seed: 123456
+Episode: 3
+
+Description:
 The agent repurposes an L-shaped hook to scoop, carry, and pour objects.
 Watch how it changes the tool orientation to collect and release the load.
 ```
+
+上面是格式示例，数字和路径需替换为真实来源。建议每份 TXT 填全：
+
+- `Source`：原始媒体的来源路径或团队内部链接，能定位到原文件。
+- `Method`：`white_box`、`black_box` 或 `genplan`。
+- `Result`：具体的实验/run 标识，建议包含运行时间和 replicate 目录。
+- `Seed`：训练/合成使用的 replicate seed。
+- `Eval-seed`：该视频对应的单个评测回合 seed（如可获得）；不要与评测套件的基础 seed 混淆。
+- `Episode`：该回合的编号，沿用源文件编号，通常从 0 开始。
+
+这是软性要求：缺少推荐字段只提示，不阻止构建。旧的“标题 + 描述”格式仍支持。
+但填写来源字段后必须用单独一行 `Description:` 分隔正文，以防误公开内部来源。
+**来源字段只留在 Drive 的 TXT 和本地下载缓存，不进入公开 HTML 或 Git 历史。**
+网站只显示第一行标题和 `Description:` 后的正文。GIF、MP4、MOV、WebM 共用这个格式。
 
 ## 本地配置（只需一次）
 

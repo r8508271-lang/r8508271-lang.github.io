@@ -64,6 +64,28 @@ class GalleryTests(unittest.TestCase):
         with self.assertRaises(gallery.GalleryError):
             gallery.submissions(self.source)
 
+    def test_private_provenance_is_separated_for_all_methods(self):
+        for method in ["white_box", "black_box", "genplan"]:
+            text = ("Public title\nSource: /home/private-person/run/video.gif\n"
+                    f"Method: {method}\nResult: internal/run-id\nSeed: 42\n"
+                    "Eval-seed: 4020131154785012916\nEpisode: 4\n\nDescription:\nPublic explanation.")
+            title, body, provenance, warnings = gallery.parse_description(text)
+            self.assertEqual((title, body), ("Public title", "Public explanation."))
+            self.assertEqual(provenance["method"], method)
+            self.assertEqual(provenance["eval-seed"], "4020131154785012916")
+            self.assertEqual(warnings, [])
+
+    def test_missing_provenance_is_only_a_warning(self):
+        title, body, _, warnings = gallery.parse_description("Title\n\nDescription:\nPublic explanation.")
+        self.assertEqual((title, body), ("Title", "Public explanation."))
+        self.assertIn("source, method, result, seed", warnings[0])
+
+    def test_metadata_without_separator_cannot_leak(self):
+        with self.assertRaisesRegex(gallery.GalleryError, "Add Description:"):
+            gallery.parse_description("Title\nSource: internal/run\nMethod: white_box\nSome prose")
+        with self.assertRaises(gallery.GalleryError):
+            gallery.parse_description("Title\nOwner: personal-name\nDescription:\nSome prose")
+
     def test_html_escapes_text(self):
         page = gallery.render([{"id": "abc", "title": '<script>alert("x")</script>',
             "description": '<img src=x onerror=alert(1)>', "src": "media/abc.mp4", "poster": "media/abc.jpg"}],

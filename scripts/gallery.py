@@ -21,6 +21,7 @@ PIPELINE = b"gallery-h264-silent-1280-crf24-v1"
 MAX_VIDEO = 95 * 1024 * 1024
 MAX_GALLERY = 900 * 1024 * 1024
 MEDIA_NAMES = ("video.mp4", "video.gif", "video.webm", "video.mov")
+PROVENANCE_FIELDS = {"source", "method", "result", "seed", "eval-seed", "episode"}
 
 
 class GalleryError(RuntimeError):
@@ -53,6 +54,51 @@ def check_public_text(text: str) -> None:
         raise GalleryError("A description contains an email, Drive link or personal filesystem path. Remove it before publishing.")
 
 
+def parse_description(text: str) -> tuple[str, str, dict[str, str], list[str]]:
+    """Keep private provenance separate from the title and public description."""
+    lines = text.lstrip("\ufeff").strip().splitlines()
+    if len(lines) < 2:
+        raise GalleryError("description.txt needs a title on the first line and a description below it.")
+    title = lines[0].strip()
+    remaining = lines[1:]
+    separator = next((i for i, line in enumerate(remaining) if line.strip().lower() == "description:"), None)
+    provenance = {}
+    if separator is not None:
+        for line in remaining[:separator]:
+            if not line.strip():
+                continue
+            key, colon, value = line.partition(":")
+            key = key.strip().lower().replace("_", "-")
+            if not colon or key not in PROVENANCE_FIELDS or key in provenance:
+                raise GalleryError("Before Description:, use one Source/Method/Result/Seed/Eval-seed/Episode field per line. Private metadata will not be published.")
+            provenance[key] = value.strip()
+        body = "\n".join(remaining[separator + 1:]).strip()
+    else:
+        # Legacy plain-text entries remain supported, but metadata without a
+        # separator must never be mistaken for public prose.
+        if any(line.partition(":")[0].strip().lower().replace("_", "-") in PROVENANCE_FIELDS
+               and ":" in line for line in remaining):
+            raise GalleryError("Add Description: after the provenance fields so internal sources stay private.")
+        body = "\n".join(remaining).strip()
+    if not title or not body:
+        raise GalleryError("description.txt needs a non-empty title and public description.")
+    if len(title) > 140 or len(body) > 8000:
+        raise GalleryError("Keep the title under 141 characters and the description under 8001 characters.")
+    check_public_text(title + "\n" + body)
+    warnings = []
+    missing = [key for key in ("source", "method", "result", "seed") if not provenance.get(key)]
+    if missing:
+        warnings.append("recommended provenance fields missing: " + ", ".join(missing))
+    method = provenance.get("method", "").lower().replace(" ", "_").replace("-", "_")
+    method = {"whitebox": "white_box", "blackbox": "black_box"}.get(method, method)
+    if method and method not in {"white_box", "black_box", "genplan"}:
+        warnings.append("Method should be white_box, black_box, or genplan")
+    for key in ("seed", "eval-seed", "episode"):
+        if provenance.get(key) and not provenance[key].isdigit():
+            warnings.append(key + " should be an integer; distinguish replicate seed from episode seed")
+    return title, body, provenance, warnings
+
+
 def submissions(source: Path) -> list[tuple[str, str, str, Path]]:
     if not source.is_dir() or source.is_symlink():
         raise GalleryError("The source must be an existing, non-symlink directory.")
@@ -73,13 +119,9 @@ def submissions(source: Path) -> list[tuple[str, str, str, Path]]:
             raise GalleryError("A submission is incomplete: every folder needs media and description.txt. Finish it or prefix its folder with _.")
         if description.stat().st_size > 32_000:
             raise GalleryError("description.txt must be smaller than 32 KB.")
-        lines = description.read_text(encoding="utf-8-sig").strip().splitlines()
-        if len(lines) < 2 or not lines[0].strip() or not "\n".join(lines[1:]).strip():
-            raise GalleryError("description.txt needs a title on the first line and a description below it.")
-        title, body = lines[0].strip(), "\n".join(lines[1:]).strip()
-        if len(title) > 140 or len(body) > 8000:
-            raise GalleryError("Keep the title under 141 characters and the description under 8001 characters.")
-        check_public_text(title + "\n" + body)
+        title, body, _, warnings = parse_description(description.read_text(encoding="utf-8-sig"))
+        for warning in warnings:
+            print(f"Note: submission {len(result) + 1}: {warning}.", file=sys.stderr)
         public_id = hashlib.sha256(directory.name.encode()).hexdigest()[:16]
         result.append((public_id, title, body, video))
     return result
