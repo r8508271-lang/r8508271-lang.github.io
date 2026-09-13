@@ -1,0 +1,9 @@
+.local/
+.env
+.env.*
+!.env.example
+*.local.json
+rclone.conf
+__pycache__/
+*.pyc
+.DS_Store

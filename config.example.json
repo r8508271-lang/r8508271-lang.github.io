@@ -1,0 +1,7 @@
+{
+  "drive_folder": "PASTE_YOUR_PRIVATE_GALLERY_FOLDER_URL_HERE",
+  "rclone_remote": "gallery-drive",
+  "rclone_binary": "rclone",
+  "rclone_config": "",
+  "ffmpeg": "ffmpeg"
+}

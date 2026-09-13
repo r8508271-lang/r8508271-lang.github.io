@@ -1,0 +1,4 @@
+Short, descriptive title
+
+Explain what happens in the video and why it is interesting. Describe the
+behavior or outcome so the reader knows what to look for.

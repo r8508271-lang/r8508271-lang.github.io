@@ -1,0 +1,21 @@
+:root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #24282e; background: #fff; }
+* { box-sizing: border-box; }
+body { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
+.page-header { padding: 76px 0 38px; border-bottom: 1px solid #e1e4e8; }
+.eyebrow { margin: 0 0 17px; font-size: 11px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: #69717a; }
+h1 { margin: 0; font-size: clamp(36px, 6vw, 46px); line-height: 1.15; font-weight: 600; letter-spacing: -.045em; }
+.intro { margin: 17px 0 0; color: #59616b; font-size: 17px; line-height: 1.65; }
+.anonymous { margin: 22px 0 0; color: #69717a; font-size: 12px; }
+.entry { display: grid; grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr); gap: 34px; padding: 36px 0; border-bottom: 1px solid #e1e4e8; align-items: start; }
+.entry video { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; background: #f3f4f5; border: 1px solid #e9ebee; border-radius: 5px; }
+.entry-number { margin: 2px 0 13px; font-size: 11px; font-weight: 600; letter-spacing: .1em; color: #757e87; }
+h2 { margin: 0 0 14px; font-size: 21px; line-height: 1.35; font-weight: 600; letter-spacing: -.02em; overflow-wrap: anywhere; }
+.description { margin: 0 0 12px; font-size: 15px; line-height: 1.75; color: #59616b; white-space: pre-wrap; overflow-wrap: anywhere; }
+.empty { padding: 65px 0 85px; color: #69717a; font-size: 15px; }
+footer { padding: 30px 0 44px; color: #78808a; font-size: 11px; }
+@media (max-width: 720px) {
+  body { padding: 0 22px; }
+  .page-header { padding: 43px 0 28px; }
+  .entry { grid-template-columns: 1fr; gap: 22px; padding: 28px 0; }
+  h2 { font-size: 20px; }
+}
