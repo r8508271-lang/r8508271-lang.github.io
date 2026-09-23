@@ -1,0 +1,13 @@
+{
+  "paperSha256": "7440db67d95406bdfa9239bc75b0b360b3cae3abe93acfb5519f4bc83437304a",
+  "tables": "I–III",
+  "environmentMethodEntriesChecked": 168,
+  "descriptionCount": 28,
+  "policyClipCount": 76,
+  "checks": {
+    "Tables I–II": "All 168 environment/method entries, including means, min/max, and missing planner results, were compared with the submitted PDF.",
+    "Table III": "Two settings; 44 matched seeds across 13 environments; 4.002 and 27.900 ms/action.",
+    "Descriptions": "Original archived Markdown retained with checksums.",
+    "Policy examples": "Matched held-out instances and archived outcomes; selected clips are not representative averages."
+  }
+}

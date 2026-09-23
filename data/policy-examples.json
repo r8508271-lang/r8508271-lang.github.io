@@ -1,0 +1,2076 @@
+{
+  "selection": "Existing shared held-out instances are retained. Codex uses the latest available complete rerun for 13 environments from the project-maintainer-confirmed no-internet Codex Reruns collection: prefer synthesis replicate 42, otherwise the first available seed in 24, 222, 424, 444 order. Other methods and the remaining 15 Codex environments retain their original programs. Synthesis replicate seeds may differ; compared policies still use the same held-out instance, object count, and initial state. These selected examples are not representative averages. Missing program archives do not imply failure. Numerical results are transcribed separately from the paper.",
+  "playback": "Frames sampled every 3 actions, encoded at 10 fps (30 actions per video second), with a one-second final hold. Same playback rate for all three methods; not wall-clock computation time.",
+  "rendering": "Frozen archived programs replayed with their archived environment configurations. Scene backgrounds enabled wherever supported. All shown outcomes match archived evaluation outcomes. Captions report replay action counts; numerical result tables remain the original paper values.",
+  "environments": [
+    {
+      "id": "StickButton2D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/StickButton2D-claude.mp4",
+          "poster": "assets/policies/StickButton2D-claude.jpg",
+          "solved": true,
+          "steps": 84,
+          "source": {
+            "archive": "kinematic2d.zip",
+            "resultsMember": "stickbutton2d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__2a66bd4a/2026-09-04_09-35-38/replicate_42/results.json",
+            "programMember": "stickbutton2d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__2a66bd4a/2026-09-04_09-35-38/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 12,
+            "instanceSeed": 5759426138040833787,
+            "resultsSha256": "058c4ef3e3d63fb38c09faa8a19b61237add13303aeba5b93aead9f05dbdf73a",
+            "approachSha256": "35a47c160faa5df6c90713dbee5c17f5ccabcec4a71c95612bddda824183a6ef",
+            "archivedSolved": true,
+            "archivedSteps": 84,
+            "initialFrameSha256": "c4cc6a0fc9426ffd02b7b6f95fcb05b58c4b7cc510f5a9012531cc3fa1b79bd9",
+            "videoSha256": "39c5de24e5441d913f6541491a6a81dcfe82bd4f81ae80afc54dea32bc2f2ccd",
+            "collection": "Final/Blackbox/Claude Code Opus 5"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/StickButton2D-codex.mp4",
+          "poster": "assets/policies/StickButton2D-codex.jpg",
+          "solved": true,
+          "steps": 141,
+          "source": {
+            "archive": "kinematic2d.zip",
+            "resultsMember": "stickbutton2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__a8beb87f/2026-09-09_01-59-12/replicate_42/results.json",
+            "programMember": "stickbutton2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__a8beb87f/2026-09-09_01-59-12/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 12,
+            "instanceSeed": 5759426138040833787,
+            "resultsSha256": "f1ebe164cf9af0e659a323f2ba3163365f2a558fd98ff5886f5762b507c6ce1f",
+            "approachSha256": "930fa28ff0dfb90119738be05f9d9a8ead5bc3b626cff7ee4bffec656536e9d4",
+            "archivedSolved": true,
+            "archivedSteps": 141,
+            "initialFrameSha256": "c4cc6a0fc9426ffd02b7b6f95fcb05b58c4b7cc510f5a9012531cc3fa1b79bd9",
+            "videoSha256": "45f66eb65a63386e000f0d3d3bd811c85e82b438ef122a319050184137d6571a",
+            "collection": "Final/Blackbox/Codex GPT5.6 Sol"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/StickButton2D-genplan.mp4",
+          "poster": "assets/policies/StickButton2D-genplan.jpg",
+          "solved": false,
+          "steps": 750,
+          "source": {
+            "archive": "stickbutton2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__25b98eac.zip",
+            "resultsMember": "multirun/stickbutton2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__25b98eac/2026-09-04_18-44-48/replicate_42/results.json",
+            "programMember": "multirun/stickbutton2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__25b98eac/2026-09-04_18-44-48/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 12,
+            "instanceSeed": 5759426138040833787,
+            "resultsSha256": "999b82cb8475cab1fadd8ec026fcafd3af955ab43eacc856219d1bc63fc503fa",
+            "approachSha256": "3ae7e758d3e30794acf0f614cb0d90adc704e3bba401e0044a39804c2e711ae6",
+            "archivedSolved": false,
+            "archivedSteps": 750,
+            "initialFrameSha256": "c4cc6a0fc9426ffd02b7b6f95fcb05b58c4b7cc510f5a9012531cc3fa1b79bd9",
+            "videoSha256": "2a916d336eb13ca59b4c3d1a2b6979b5b0c2dee104cc8084de837bf3d9ad6f9f",
+            "collection": "Final/Baselines/GenPlan"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "Obstruction2D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/Obstruction2D-claude.mp4",
+          "poster": "assets/policies/Obstruction2D-claude.jpg",
+          "solved": true,
+          "steps": 63,
+          "source": {
+            "archive": "kinematic2d.zip",
+            "resultsMember": "obstruction2d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__3736cd3f/2026-09-03_18-24-08/replicate_42/results.json",
+            "programMember": "obstruction2d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__3736cd3f/2026-09-03_18-24-08/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 3,
+            "instanceSeed": 5070999126167511316,
+            "resultsSha256": "138c565708b04b2f3320d6541c3c2b3a3257a0379965464581d417462c272557",
+            "approachSha256": "d8b46a1cf2b5c0d3db62deba015982ec63c246a2cbca5e440051a3ff4d312013",
+            "archivedSolved": true,
+            "archivedSteps": 63,
+            "initialFrameSha256": "5ead9b65ebbf23daa32ff1543e06cb305c24790c64a08749ba874c835a1a6e88",
+            "videoSha256": "bfb74535340ff66a387eb4d435363bcd826f3038149c1273042b8858a52f55dd",
+            "collection": "Final/Blackbox/Claude Code Opus 5"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/Obstruction2D-codex.mp4",
+          "poster": "assets/policies/Obstruction2D-codex.jpg",
+          "solved": true,
+          "steps": 292,
+          "source": {
+            "archive": "kinematic2d.zip",
+            "resultsMember": "obstruction2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__99b3a73f/2026-09-08_22-06-59/replicate_42/results.json",
+            "programMember": "obstruction2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__99b3a73f/2026-09-08_22-06-59/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 3,
+            "instanceSeed": 5070999126167511316,
+            "resultsSha256": "1c78ffe1befdc138f62691aad8224e575acc98060d6cf62e25a28c9e30b8fa94",
+            "approachSha256": "7b35ab4336cffdbfee2bc9156c904ef79240a1a9ebe937c6d719c55ef61cbdbc",
+            "archivedSolved": true,
+            "archivedSteps": 292,
+            "initialFrameSha256": "5ead9b65ebbf23daa32ff1543e06cb305c24790c64a08749ba874c835a1a6e88",
+            "videoSha256": "7ca2e4ec2278ed7a66306c129a298ea490b0ec112bf67a0f40e83855d98ba63b",
+            "collection": "Final/Blackbox/Codex GPT5.6 Sol"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/Obstruction2D-genplan.mp4",
+          "poster": "assets/policies/Obstruction2D-genplan.jpg",
+          "solved": false,
+          "steps": 750,
+          "source": {
+            "archive": "obstruction2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__43fb67b1.zip",
+            "resultsMember": "obstruction2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__43fb67b1/2026-09-04_12-33-20/replicate_42/results.json",
+            "programMember": "obstruction2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__43fb67b1/2026-09-04_12-33-20/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 3,
+            "instanceSeed": 5070999126167511316,
+            "resultsSha256": "c9c1539bc7d8ea70892b50d7c17cd8fd2effb1186cb65e7d341069198c891f26",
+            "approachSha256": "90477100813ee15bd98ed71d6cd5775e41085b9e2e79fd23f33761f4b2be6420",
+            "archivedSolved": false,
+            "archivedSteps": 750,
+            "initialFrameSha256": "5ead9b65ebbf23daa32ff1543e06cb305c24790c64a08749ba874c835a1a6e88",
+            "videoSha256": "43fac03007bef1081e695d3144cae5bbf3bdfa7d687f6a18136acb3e256238d2",
+            "collection": "Final/Baselines/GenPlan"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "ClutteredStorage2D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/ClutteredStorage2D-claude.mp4",
+          "poster": "assets/policies/ClutteredStorage2D-claude.jpg",
+          "solved": true,
+          "steps": 166,
+          "source": {
+            "archive": "kinematic2d.zip",
+            "resultsMember": "clutteredstorage2d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__d099d391/2026-09-04_07-20-08/replicate_42/results.json",
+            "programMember": "clutteredstorage2d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__d099d391/2026-09-04_07-20-08/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 1,
+            "instanceSeed": 5553887448546940950,
+            "resultsSha256": "e2ba9c229b640e9e947f4a5a8a8f62ba097dc0bd9e00137859d4951b9f17bb4f",
+            "approachSha256": "705aa02bba5e15c4132953a49413f551817a4917db2866e0a80a4bba63b352b2",
+            "archivedSolved": true,
+            "archivedSteps": 166,
+            "initialFrameSha256": "df1c9a09b0d2cc03a23fe18a88c0974bd89951ca4ecb6dc9ef8390925b2b83d7",
+            "videoSha256": "307bd7297ed2a21cfdf3ccf54be84dc4e27a91271d2e6c1d809c685fe50398b8",
+            "collection": "Final/Blackbox/Claude Code Opus 5"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/ClutteredStorage2D-codex.mp4",
+          "poster": "assets/policies/ClutteredStorage2D-codex.jpg",
+          "solved": true,
+          "steps": 512,
+          "source": {
+            "collection": "Codex Reruns",
+            "archive": "clutteredstorage2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__5f496c8a.zip",
+            "resultsMember": "clutteredstorage2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__5f496c8a/2026-09-15_21-34-41/replicate_444/results.json",
+            "programMember": "clutteredstorage2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__5f496c8a/2026-09-15_21-34-41/replicate_444/sandbox/approach.py",
+            "replicateSeed": 444,
+            "episode": 1,
+            "instanceSeed": 5553887448546940950,
+            "resultsSha256": "0434bbbbca1e02a79981bc7b977793b6a724a7d2b50591287697221a751a1dc0",
+            "approachSha256": "d3e6de8a02d6822f20362ac34a267c3fbd28229a294a0ad080e04f96e12fc6ce",
+            "archivedSolved": true,
+            "archivedSteps": 512,
+            "initialFrameSha256": "df1c9a09b0d2cc03a23fe18a88c0974bd89951ca4ecb6dc9ef8390925b2b83d7",
+            "initialStateSha256": "29c10d320cd2cc231fe4a278c8bfa11ff2b91ed29755f06f2148902161bebad6",
+            "videoSha256": "fe240d492a924219ebf5ebad69df6f7e8af6e4ab157ab7cbf2d6d6cafb11221e"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/ClutteredStorage2D-genplan.mp4",
+          "poster": "assets/policies/ClutteredStorage2D-genplan.jpg",
+          "solved": false,
+          "steps": 750,
+          "source": {
+            "archive": "clutteredstorage2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__c9b7bb4f.zip",
+            "resultsMember": "multirun/clutteredstorage2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__c9b7bb4f/2026-09-04_18-00-55/replicate_42/results.json",
+            "programMember": "multirun/clutteredstorage2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__c9b7bb4f/2026-09-04_18-00-55/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 1,
+            "instanceSeed": 5553887448546940950,
+            "resultsSha256": "0a70e27a4c442fdd07a9d19957f0f9f577962d160f061d8a7e01fcc21d6c6d3c",
+            "approachSha256": "fb39fbe0e4b5f7bdfeef5a72a2888605c093a7e420e6ea86b8fc0a20986e04fe",
+            "archivedSolved": false,
+            "archivedSteps": 750,
+            "initialFrameSha256": "df1c9a09b0d2cc03a23fe18a88c0974bd89951ca4ecb6dc9ef8390925b2b83d7",
+            "videoSha256": "c03e80249dced012b925ecb16988a4cea771a685afa2331830eea4ff1d03d1e7",
+            "collection": "Final/Baselines/GenPlan"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "ClutteredRetrieval2D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/ClutteredRetrieval2D-claude.mp4",
+          "poster": "assets/policies/ClutteredRetrieval2D-claude.jpg",
+          "solved": true,
+          "steps": 57,
+          "source": {
+            "archive": "kinematic2d.zip",
+            "resultsMember": "clutteredretrieval2d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__bdf9bfa8/2026-09-03_23-25-09/replicate_42/results.json",
+            "programMember": "clutteredretrieval2d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__bdf9bfa8/2026-09-03_23-25-09/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 1,
+            "instanceSeed": 5553887448546940950,
+            "resultsSha256": "17ac407978adac2781ab878b8c320de007a5d40f94674747fc10e935c6a55bdc",
+            "approachSha256": "f91e0bfbcc333e5990e36d5221855bd423b0d2ce1dbde380c31f9bf824347614",
+            "archivedSolved": true,
+            "archivedSteps": 57,
+            "initialFrameSha256": "c56814fe51142528765aa23c7be9a2db467f44ba121fc4fd6e7ae712e87035fd",
+            "videoSha256": "48f22b045a4123378b426ea9a7dc41c8703ff2c083b815a290e8ed5e8f553b43",
+            "collection": "Final/Blackbox/Claude Code Opus 5"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/ClutteredRetrieval2D-codex.mp4",
+          "poster": "assets/policies/ClutteredRetrieval2D-codex.jpg",
+          "solved": false,
+          "steps": 750,
+          "source": {
+            "archive": "kinematic2d.zip",
+            "resultsMember": "clutteredretrieval2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__963a5d8b/2026-09-08_13-26-29/replicate_42/results.json",
+            "programMember": "clutteredretrieval2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__963a5d8b/2026-09-08_13-26-29/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 1,
+            "instanceSeed": 5553887448546940950,
+            "resultsSha256": "55c75c422350e6aefd58a6a8177d371c2842c05229401ca34cc7f5eac1b95281",
+            "approachSha256": "a9244e955e76fbedc9ae9ab2c4081a6f4dda893486f7126b2668ff79454e9264",
+            "archivedSolved": false,
+            "archivedSteps": 750,
+            "initialFrameSha256": "c56814fe51142528765aa23c7be9a2db467f44ba121fc4fd6e7ae712e87035fd",
+            "videoSha256": "7a3909b10fab9b98971ead106f9206fe80cf172cead2dfbfea1f95162f3f7f5b",
+            "collection": "Final/Blackbox/Codex GPT5.6 Sol"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/ClutteredRetrieval2D-genplan.mp4",
+          "poster": "assets/policies/ClutteredRetrieval2D-genplan.jpg",
+          "solved": true,
+          "steps": 82,
+          "source": {
+            "archive": "clutteredretrieval2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__445b16cc.zip",
+            "resultsMember": "clutteredretrieval2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__445b16cc/2026-09-04_18-00-41/replicate_42/results.json",
+            "programMember": "clutteredretrieval2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__445b16cc/2026-09-04_18-00-41/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 1,
+            "instanceSeed": 5553887448546940950,
+            "resultsSha256": "435a9f65a64197898d4fa867df7a6c08da7924e696f7c66123796ab4a5a21a3f",
+            "approachSha256": "7c3c409eae1c320767817cae2f382febb4c546cef2965d6b0010c6650f1d1268",
+            "archivedSolved": true,
+            "archivedSteps": 82,
+            "initialFrameSha256": "c56814fe51142528765aa23c7be9a2db467f44ba121fc4fd6e7ae712e87035fd",
+            "videoSha256": "deae23d261667524da9056ce4fec7b9e6ae84c294859867971baaeed247fa5a8",
+            "collection": "Final/Baselines/GenPlan"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "Motion2D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/Motion2D-claude.mp4",
+          "poster": "assets/policies/Motion2D-claude.jpg",
+          "solved": true,
+          "steps": 62,
+          "source": {
+            "archive": "kinematic2d.zip",
+            "resultsMember": "motion2d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__0abd3dc9/2026-09-04_01-31-22/replicate_42/results.json",
+            "programMember": "motion2d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__0abd3dc9/2026-09-04_01-31-22/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 99,
+            "instanceSeed": 2396529055829695215,
+            "resultsSha256": "2a4365eaca717ce32774b3b47ebb285fe2ddc50f091be409e72dde6f6f446c4d",
+            "approachSha256": "c79232e215188064e5dc05eff6b3f5dfecbe29936ac1976a4db40f92955b02e2",
+            "archivedSolved": true,
+            "archivedSteps": 62,
+            "initialFrameSha256": "56a42becd3f17cdbd0a7ae038793eda6346484dcfbf099ae7305c5207ec03f49",
+            "videoSha256": "e7f008abfd0fb543571374c4abe0c13bf66cc98a1f2c7f31d1ebf8ddde70d96a",
+            "collection": "Final/Blackbox/Claude Code Opus 5"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/Motion2D-codex.mp4",
+          "poster": "assets/policies/Motion2D-codex.jpg",
+          "solved": true,
+          "steps": 72,
+          "source": {
+            "archive": "kinematic2d.zip",
+            "resultsMember": "motion2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__6a397c2b/2026-09-08_18-02-36/replicate_42/results.json",
+            "programMember": "motion2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__6a397c2b/2026-09-08_18-02-36/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 99,
+            "instanceSeed": 2396529055829695215,
+            "resultsSha256": "91609a5f3240c58f772e9002d14d5246baf36325f990ff085f58b19c8499d0c7",
+            "approachSha256": "7233eafd30606f2de2201d4e4acdeebf3fcf34a4943b8b692b48202c9e1eb170",
+            "archivedSolved": true,
+            "archivedSteps": 72,
+            "initialFrameSha256": "56a42becd3f17cdbd0a7ae038793eda6346484dcfbf099ae7305c5207ec03f49",
+            "videoSha256": "f3a276a9a757f298410b616c8783d16613fc0ef4238e2adbdc24c3fabf0299e6",
+            "collection": "Final/Blackbox/Codex GPT5.6 Sol"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/Motion2D-genplan.mp4",
+          "poster": "assets/policies/Motion2D-genplan.jpg",
+          "solved": false,
+          "steps": 750,
+          "source": {
+            "archive": "motion2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__31b7b054.zip",
+            "resultsMember": "motion2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__31b7b054/2026-09-04_12-17-05/replicate_42/results.json",
+            "programMember": "motion2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__31b7b054/2026-09-04_12-17-05/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 99,
+            "instanceSeed": 2396529055829695215,
+            "resultsSha256": "dd93b90aabe85d1fa5942afb57fb5c7a1b43c0474ea83378444b19749dce5fad",
+            "approachSha256": "3283ab5f14420e1db2138a53f10a29ec95b3bbab3f7ebe6b1ba24f4944d87fd7",
+            "archivedSolved": false,
+            "archivedSteps": 750,
+            "initialFrameSha256": "56a42becd3f17cdbd0a7ae038793eda6346484dcfbf099ae7305c5207ec03f49",
+            "videoSha256": "2cdc682b647c708d3b339386de1d32f2ff0fcef979cb8eb043374f51969c2e24",
+            "collection": "Final/Baselines/GenPlan"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "PushPullHook2D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/PushPullHook2D-claude.mp4",
+          "poster": "assets/policies/PushPullHook2D-claude.jpg",
+          "solved": true,
+          "steps": 50,
+          "source": {
+            "archive": "kinematic2d.zip",
+            "resultsMember": "pushpullhook2d__agentic__none__blackbox__strict__claude_opus5__timeout_60s__45d72073/2026-09-04_03-08-53/replicate_42/results.json",
+            "programMember": "pushpullhook2d__agentic__none__blackbox__strict__claude_opus5__timeout_60s__45d72073/2026-09-04_03-08-53/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "c44673b3437052695e511590ee297029833eff339528b9d38c877b83ccc649a2",
+            "approachSha256": "fb0c64932bdf70a65ab3b26bc3861624b071d26b7b08f7fede4c8ebb812d984a",
+            "archivedSolved": true,
+            "archivedSteps": 50,
+            "initialFrameSha256": "1419a1987741a43fae939ae3d51c86893d2c2cfddfb1ba2e4bb6b68575a881f3",
+            "videoSha256": "69565718023e423985405103754fb580de9baac7446985a43bba813d3ac9aa22",
+            "collection": "Final/Blackbox/Claude Code Opus 5"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/PushPullHook2D-codex.mp4",
+          "poster": "assets/policies/PushPullHook2D-codex.jpg",
+          "solved": true,
+          "steps": 171,
+          "source": {
+            "archive": "kinematic2d.zip",
+            "resultsMember": "pushpullhook2d__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__51af47a8/2026-09-08_19-41-07/replicate_42/results.json",
+            "programMember": "pushpullhook2d__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__51af47a8/2026-09-08_19-41-07/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "3a2f215c9c702f8236470fa6b5419148596a730a311b84a39753152598415c73",
+            "approachSha256": "9afa102d859a57b452dfdea17fbbb78316ad5090006a4fd70ac5d7a6bca61aa8",
+            "archivedSolved": true,
+            "archivedSteps": 171,
+            "initialFrameSha256": "1419a1987741a43fae939ae3d51c86893d2c2cfddfb1ba2e4bb6b68575a881f3",
+            "videoSha256": "314437b05749bc8c8c7a826f83926c9e3d82cc2acf3661c7dafd2d15c01d16f7",
+            "collection": "Final/Blackbox/Codex GPT5.6 Sol"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/PushPullHook2D-genplan.mp4",
+          "poster": "assets/policies/PushPullHook2D-genplan.jpg",
+          "solved": false,
+          "steps": 1000,
+          "source": {
+            "archive": "pushpullhook2d__llm_genplan__none__cli_opus5__timeout_60s__2c78796f.zip",
+            "resultsMember": "multirun/pushpullhook2d__llm_genplan__none__cli_opus5__timeout_60s__2c78796f/2026-09-05_08-20-49/replicate_42/results.json",
+            "programMember": "multirun/pushpullhook2d__llm_genplan__none__cli_opus5__timeout_60s__2c78796f/2026-09-05_08-20-49/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "d254d2b1c486a2d929d455d0c38bc8d4d960f8bf6f50e9642a09029a156b6fd5",
+            "approachSha256": "954de363286d320901821b255d54184d69bcbf102683c0b5824758dc4fb3d255",
+            "archivedSolved": false,
+            "archivedSteps": 1000,
+            "initialFrameSha256": "1419a1987741a43fae939ae3d51c86893d2c2cfddfb1ba2e4bb6b68575a881f3",
+            "videoSha256": "5609b2057c503a9ab1c50f77492c894deab9d984cd3a01920943a2c2dc89973d",
+            "collection": "Final/Baselines/GenPlan"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "DynObstruction2D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/DynObstruction2D-claude.mp4",
+          "poster": "assets/policies/DynObstruction2D-claude.jpg",
+          "solved": true,
+          "steps": 218,
+          "source": {
+            "archive": "dynamic2d.zip",
+            "resultsMember": "dynobstruction2d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__0a98652d/2026-09-03_18-24-48/replicate_42/results.json",
+            "programMember": "dynobstruction2d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__0a98652d/2026-09-03_18-24-48/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "6e949acb87e76c868b2b73fb18b920228e19809db639daa6ec69527d5a8fb1be",
+            "approachSha256": "f9add227ff551dddc48864daf860c6c2dc26d6e0e8d3d35f3f8146c7579bcab5",
+            "archivedSolved": true,
+            "archivedSteps": 218,
+            "initialFrameSha256": "e6a4ba20f93e1a05fff95752b8bbd14e8e597156779d711378b3c74693bf462b",
+            "videoSha256": "51d986921394abe14907cccb3f620962b2eff2dbc3ae59423a2dcc07c285b838",
+            "collection": "Final/Blackbox/Claude Code Opus 5"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/DynObstruction2D-codex.mp4",
+          "poster": "assets/policies/DynObstruction2D-codex.jpg",
+          "solved": true,
+          "steps": 155,
+          "source": {
+            "archive": "dynamic2d.zip",
+            "resultsMember": "dynobstruction2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__fd0aa4fb/2026-09-09_03-43-46/replicate_42/results.json",
+            "programMember": "dynobstruction2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__fd0aa4fb/2026-09-09_03-43-46/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "ed73a0a815b237e3d56b381db50b8fb41f64602c18ad04f4e0a905e307b35b0e",
+            "approachSha256": "d01d3bfb447e5e07a337371ad17567324b054c8f236101260d2e44e2534b0407",
+            "archivedSolved": true,
+            "archivedSteps": 155,
+            "initialFrameSha256": "e6a4ba20f93e1a05fff95752b8bbd14e8e597156779d711378b3c74693bf462b",
+            "videoSha256": "10d8ff92e310c6341a54491bef251234bd86702a5f91190db7df601263d7670f",
+            "collection": "Final/Blackbox/Codex GPT5.6 Sol"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/DynObstruction2D-genplan.mp4",
+          "poster": "assets/policies/DynObstruction2D-genplan.jpg",
+          "solved": false,
+          "steps": 300,
+          "source": {
+            "archive": "dynobstruction2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__7fe9dc51.zip",
+            "resultsMember": "dynobstruction2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__7fe9dc51/2026-09-03_17-10-44/replicate_42/results.json",
+            "programMember": "dynobstruction2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__7fe9dc51/2026-09-03_17-10-44/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "59b51dcfbedf1eef3f60f30346e02f341838aecdcf323653d3995314c6f3a4d9",
+            "approachSha256": "cf70e74071de47c0adbc5dfbde1e32340c706e773fb1d1cdfb115ab36c45d06b",
+            "archivedSolved": false,
+            "archivedSteps": 300,
+            "initialFrameSha256": "e6a4ba20f93e1a05fff95752b8bbd14e8e597156779d711378b3c74693bf462b",
+            "videoSha256": "9e24d94844eab8f7a19bad4799f37b9bf9afa776fda9b0b22274e0fe7cb5feb1",
+            "collection": "Final/Baselines/GenPlan"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "DynPushPullHook2D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/DynPushPullHook2D-claude.mp4",
+          "poster": "assets/policies/DynPushPullHook2D-claude.jpg",
+          "solved": true,
+          "steps": 233,
+          "source": {
+            "archive": "dynamic2d.zip",
+            "resultsMember": "dynpushpullhook2d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__fa580313/2026-09-04_18-42-16/replicate_42/results.json",
+            "programMember": "dynpushpullhook2d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__fa580313/2026-09-04_18-42-16/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 3,
+            "instanceSeed": 5070999126167511316,
+            "resultsSha256": "9d1745cc799144a5a3ae51935e16c3e95b61ab7c36bc726f35d6424ff4621220",
+            "approachSha256": "041dcb412c185c10e9546fd07385c3e60974d9107b9f73ec97c093db284508f7",
+            "archivedSolved": true,
+            "archivedSteps": 233,
+            "initialFrameSha256": "5881c8dd7ef185c51e564716497bff63bc32c3ddec4bb1f9c3f870f95eff7719",
+            "videoSha256": "806394b01097dbf407fec250c21891226a0d2a1ae59a48861198c182ff7f12f2",
+            "collection": "Final/Blackbox/Claude Code Opus 5"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/DynPushPullHook2D-codex.mp4",
+          "poster": "assets/policies/DynPushPullHook2D-codex.jpg",
+          "solved": true,
+          "steps": 175,
+          "source": {
+            "archive": "dynamic2d.zip",
+            "resultsMember": "dynpushpullhook2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__aa65f752/2026-09-09_06-22-18/replicate_42/results.json",
+            "programMember": "dynpushpullhook2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__aa65f752/2026-09-09_06-22-18/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 3,
+            "instanceSeed": 5070999126167511316,
+            "resultsSha256": "608e7a901b2410ad298d92073b2c86347105152e584bf793eb75a646b282c730",
+            "approachSha256": "9eea97f6eb45fe97dff44c0c2d8b4872820d5b6d99eb7e6fa45d76d63bf23444",
+            "archivedSolved": true,
+            "archivedSteps": 175,
+            "initialFrameSha256": "5881c8dd7ef185c51e564716497bff63bc32c3ddec4bb1f9c3f870f95eff7719",
+            "videoSha256": "2d1bca768477da8eb5d9a758a09643bcc3671ab5bc937968cf2106169e93dbb3",
+            "collection": "Final/Blackbox/Codex GPT5.6 Sol"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/DynPushPullHook2D-genplan.mp4",
+          "poster": "assets/policies/DynPushPullHook2D-genplan.jpg",
+          "solved": false,
+          "steps": 750,
+          "source": {
+            "archive": "dynpushpullhook2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__d9f9fcbc.zip",
+            "resultsMember": "dynpushpullhook2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__d9f9fcbc/2026-09-03_17-10-52/replicate_42/results.json",
+            "programMember": "dynpushpullhook2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__d9f9fcbc/2026-09-03_17-10-52/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 3,
+            "instanceSeed": 5070999126167511316,
+            "resultsSha256": "d0f6a719f7402b9daa68a797633c672383c4728c43f8b3faad06e9269b89f8b0",
+            "approachSha256": "01e90e2015f4256c64516007b06076c1f0b8d81901a28dbcb2a06b14cbddc038",
+            "archivedSolved": false,
+            "archivedSteps": 750,
+            "initialFrameSha256": "5881c8dd7ef185c51e564716497bff63bc32c3ddec4bb1f9c3f870f95eff7719",
+            "videoSha256": "542b5786c015b6cedc9997e9a1c2a08e38b514bbb349be16ce0e524ace72140d",
+            "collection": "Final/Baselines/GenPlan"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "DynPushT2D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/DynPushT2D-claude.mp4",
+          "poster": "assets/policies/DynPushT2D-claude.jpg",
+          "solved": true,
+          "steps": 266,
+          "source": {
+            "archive": "dynamic2d.zip",
+            "resultsMember": "dynpusht2d__agentic__none__blackbox__strict__claude_opus5__timeout_60s__3a989e8a/rescore_kinder-goal-fix_2026-09-05/replicate_42/results.json",
+            "programMember": "dynpusht2d__agentic__none__blackbox__strict__claude_opus5__timeout_60s__3a989e8a/2026-09-04_20-08-47/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "e97e34ee9824e4a9e324e16748b3861f75d02dec334e54b4c75cb34237b6f09f",
+            "approachSha256": "def32bc5f9fe87be7d191a1989c78c8c66c39683fb68dbf7554e3770f87ed4ed",
+            "archivedSolved": true,
+            "archivedSteps": 266,
+            "initialFrameSha256": "b147d6ce2f1d9481e9ae07c1639a0dac66b857fa8bb569ee13b77e2ff1e08049",
+            "videoSha256": "407442ab94105ba7b81b2324df16193af8ac6ca6caeba18aa409a89968e34235",
+            "collection": "Final/Blackbox/Claude Code Opus 5"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/DynPushT2D-codex.mp4",
+          "poster": "assets/policies/DynPushT2D-codex.jpg",
+          "solved": false,
+          "steps": 1000,
+          "source": {
+            "archive": "dynamic2d.zip",
+            "resultsMember": "dynpusht2d__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__3e52b298/2026-09-09_08-23-00/replicate_42/results.json",
+            "programMember": "dynpusht2d__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__3e52b298/2026-09-09_08-23-00/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "5d9c4139a66030b0f4d6ea3004416b1af78ede5a7dcc1a6d0396ee6d8e1544ec",
+            "approachSha256": "814c6eeef81933fd583934a204f755ccc6a7bae10a8e74d375da532295580834",
+            "archivedSolved": false,
+            "archivedSteps": 1000,
+            "initialFrameSha256": "b147d6ce2f1d9481e9ae07c1639a0dac66b857fa8bb569ee13b77e2ff1e08049",
+            "videoSha256": "c852868f20679d376e668e69e7cff158945972303d34412a9104a79d2e18305a",
+            "collection": "Final/Blackbox/Codex GPT5.6 Sol"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/DynPushT2D-genplan.mp4",
+          "poster": "assets/policies/DynPushT2D-genplan.jpg",
+          "solved": false,
+          "steps": 1000,
+          "source": {
+            "archive": "dynpusht2d__llm_genplan__none__cli_opus5__timeout_60s__2fe91445.zip",
+            "resultsMember": "dynpusht2d__llm_genplan__none__cli_opus5__timeout_60s__2fe91445/2026-09-04_09-51-49/replicate_42/results.json",
+            "programMember": "dynpusht2d__llm_genplan__none__cli_opus5__timeout_60s__2fe91445/2026-09-04_09-51-49/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "bbd241a3015a781ba7bfe7f05045dc7fd390c026362ed120685544112b3ba4f7",
+            "approachSha256": "ec4f410384a27b1d32db991943aa7d0aab4e6a9ce311c4f83250ff1e077d0631",
+            "archivedSolved": false,
+            "archivedSteps": 1000,
+            "initialFrameSha256": "b147d6ce2f1d9481e9ae07c1639a0dac66b857fa8bb569ee13b77e2ff1e08049",
+            "videoSha256": "5bee2c04abe692b103a5c7febbc99fdcabb741d87bb51459438f5e1b2d267636",
+            "collection": "Final/Baselines/GenPlan"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "DynScoopPour2D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/DynScoopPour2D-claude.mp4",
+          "poster": "assets/policies/DynScoopPour2D-claude.jpg",
+          "solved": true,
+          "steps": 396,
+          "source": {
+            "archive": "dynamic2d.zip",
+            "resultsMember": "dynscooppour2d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__fdd0573f/2026-09-04_23-25-18/replicate_42/results.json",
+            "programMember": "dynscooppour2d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__fdd0573f/2026-09-04_23-25-18/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "e3397cffed437ccdb5a5926bdadc2b8bdcb2ded8b1da7d7217a0e11b5b4f0e77",
+            "approachSha256": "0ddc94bfbb3ce0b489519c8e2a71c4a27223bdfe214a4d1c2ad3d339296fbdad",
+            "archivedSolved": true,
+            "archivedSteps": 401,
+            "initialFrameSha256": "098181d8ade2ae2bfb08731047257ec8b7975b66aed34847883261bcc51b58d9",
+            "videoSha256": "72dc3fe9dc492ee05f3838108f71e7fa1d27e6ce2885678a147702079860314f",
+            "collection": "Final/Blackbox/Claude Code Opus 5"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/DynScoopPour2D-codex.mp4",
+          "poster": "assets/policies/DynScoopPour2D-codex.jpg",
+          "solved": false,
+          "steps": 1800,
+          "source": {
+            "archive": "dynamic2d.zip",
+            "resultsMember": "dynscooppour2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__ba8f7b37/2026-09-09_09-54-01/replicate_42/results.json",
+            "programMember": "dynscooppour2d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__ba8f7b37/2026-09-09_09-54-01/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "8617c77ca31c7fd7e458105fb8ec1da23ade0119408681d46915b2bd4831b345",
+            "approachSha256": "a0c8ab833feaeb18cfbfc5ea86777c8d8d8d461402f827f10fb337c5c5b99c7d",
+            "archivedSolved": false,
+            "archivedSteps": 1800,
+            "initialFrameSha256": "098181d8ade2ae2bfb08731047257ec8b7975b66aed34847883261bcc51b58d9",
+            "videoSha256": "75b202975c9dbdfe4e954d2afe5e18f3027327817b02c6ee253d1f2725e99400",
+            "collection": "Final/Blackbox/Codex GPT5.6 Sol"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/DynScoopPour2D-genplan.mp4",
+          "poster": "assets/policies/DynScoopPour2D-genplan.jpg",
+          "solved": false,
+          "steps": 1800,
+          "source": {
+            "archive": "dynscooppour2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__a48ac3fe.zip",
+            "resultsMember": "multirun/dynscooppour2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__a48ac3fe/2026-09-04_08-42-00/replicate_42/results.json",
+            "programMember": "multirun/dynscooppour2d_generalized__llm_genplan__none__cli_opus5__timeout_60s__a48ac3fe/2026-09-04_08-42-00/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "edc609e2ceb7f2e8bac25e782f68ffbece90e5e3979e0bdeeab765d7a691f5ad",
+            "approachSha256": "e7991e76d5077f8ee17f9bd4ca0809c7b835dfdb8d47f27a86ff6de1aa0c1445",
+            "archivedSolved": false,
+            "archivedSteps": 1800,
+            "initialFrameSha256": "098181d8ade2ae2bfb08731047257ec8b7975b66aed34847883261bcc51b58d9",
+            "videoSha256": "85b186f1956052532676fd459dfaa863b20ba942054ea9d43019898eeb196484",
+            "collection": "Final/Baselines/GenPlan"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "Obstruction3D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/Obstruction3D-claude.mp4",
+          "poster": "assets/policies/Obstruction3D-claude.jpg",
+          "solved": true,
+          "steps": 29,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "kinematic3d.zip",
+            "resultsMember": "obstruction3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__9e2b7c7e/2026-09-03_18-24-28/replicate_42/results.json",
+            "programMember": "obstruction3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__9e2b7c7e/2026-09-03_18-24-28/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "a3a86f8cc7f215cabdbb4cec83d6ab22f8cd3a291f09e803a7d08cedab248ddd",
+            "approachSha256": "67579923014d19ddfb9ef7ee516c678a78a99a65282ba041bc229dc31271c2b1",
+            "archivedSolved": true,
+            "archivedSteps": 29,
+            "initialFrameSha256": "6e86f38231d2403cef25b53a15a15da22eb8bf00135788b5ca81b9fd09f0cf80",
+            "videoSha256": "069a9fe269ed9507f8f0e2eef7ed963ce5a67e24a04661151b9937f4edc31596"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/Obstruction3D-codex.mp4",
+          "poster": "assets/policies/Obstruction3D-codex.jpg",
+          "solved": true,
+          "steps": 206,
+          "source": {
+            "collection": "Codex Reruns",
+            "archive": "obstruction3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__8d555f92.zip",
+            "resultsMember": "obstruction3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__8d555f92/2026-09-15_21-44-43_UTC/replicate_42/results.json",
+            "programMember": "obstruction3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__8d555f92/2026-09-15_21-44-43_UTC/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "3a5b4b1b402cc4a3233b46ede3685ede4fe316adfb410ad4666254bb20d7f5c1",
+            "approachSha256": "9d43684f9a2d04f1169380d99323a849c6cf47c444c8f5d4c28d8f2cebe0be1a",
+            "archivedSolved": true,
+            "archivedSteps": 206,
+            "initialFrameSha256": "6e86f38231d2403cef25b53a15a15da22eb8bf00135788b5ca81b9fd09f0cf80",
+            "initialStateSha256": "9333c88a9b641f3797aa83e691055c09d34a0ab39d239c67feb01115a650dd85",
+            "videoSha256": "310e6b1f38f735fcbf8b58555657ec05cefd1c0281016f78dd2d49589ed83cc4"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/Obstruction3D-genplan.mp4",
+          "poster": "assets/policies/Obstruction3D-genplan.jpg",
+          "solved": false,
+          "steps": 300,
+          "source": {
+            "collection": "Final/Baselines/GenPlan",
+            "archive": "obstruction3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__70156922.zip",
+            "resultsMember": "multirun/obstruction3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__70156922/2026-09-05_08-22-47/replicate_42/results.json",
+            "programMember": "multirun/obstruction3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__70156922/2026-09-05_08-22-47/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "d6270faa0c0014b4edda809eb43485ea158fba57626a645ff815027cc893b96a",
+            "approachSha256": "e1a31a9e41a8612521edfa4fe1cd10f965f456af7c2226cca1eb2346c3e36918",
+            "archivedSolved": false,
+            "archivedSteps": 300,
+            "initialFrameSha256": "6e86f38231d2403cef25b53a15a15da22eb8bf00135788b5ca81b9fd09f0cf80",
+            "videoSha256": "1fa4d6710966f29fa09ec8317efeaa5839008c40b57319a6a8470d178b5a2fa3"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "Packing3D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/Packing3D-claude.mp4",
+          "poster": "assets/policies/Packing3D-claude.jpg",
+          "solved": true,
+          "steps": 117,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "kinematic3d.zip",
+            "resultsMember": "packing3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__414bfc26/2026-09-03_20-11-44/replicate_42/results.json",
+            "programMember": "packing3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__414bfc26/2026-09-03_20-11-44/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 2,
+            "instanceSeed": 6578458030060481490,
+            "resultsSha256": "b1b0697611f9a9a3ffb5b7a679e56a76b052f2e2af7611e5e28a2c3c4be194bd",
+            "approachSha256": "ab81a8775fd1c68e4ba002b1d66dab7c77bafc3d06cadf602512e7ffd984c7ea",
+            "archivedSolved": true,
+            "archivedSteps": 117,
+            "initialFrameSha256": "56d979c7ee10ea70ccd4852f0ab98bc768a0e0ef5c2e27ff8a12dca44791125c",
+            "videoSha256": "7c943b6c6ad4a01d70df8a4a24efb0d84536a5122172fb9b4def4b519b89ae1f"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/Packing3D-codex.mp4",
+          "poster": "assets/policies/Packing3D-codex.jpg",
+          "solved": false,
+          "steps": 750,
+          "source": {
+            "collection": "Codex Reruns",
+            "archive": "packing3d__seed42.zip",
+            "resultsMember": "packing3d__seed42/replicate_42/results.json",
+            "programMember": "packing3d__seed42/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 2,
+            "instanceSeed": 6578458030060481490,
+            "resultsSha256": "d962f5061ba8f2a0e29ff3d7ab1176e6eaf746248833b9f2ccfd917f48c9ec1a",
+            "approachSha256": "e6a9960cbee5532d20ad4059cef6198c0818ef342502a9c716a05ceed1c4d4a9",
+            "archivedSolved": false,
+            "archivedSteps": 750,
+            "initialFrameSha256": "56d979c7ee10ea70ccd4852f0ab98bc768a0e0ef5c2e27ff8a12dca44791125c",
+            "initialStateSha256": "c33745586a0ed9c0334cb411069f8372716495665aaad916740843ac423710a9",
+            "videoSha256": "cf762e82375f8dfd555510a1f6ea6df78041a50e2da1d56445af55b0dcab15f6"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/Packing3D-genplan.mp4",
+          "poster": "assets/policies/Packing3D-genplan.jpg",
+          "solved": false,
+          "steps": 750,
+          "source": {
+            "collection": "Final/Baselines/GenPlan",
+            "archive": "packing3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__57819e3c.zip",
+            "resultsMember": "packing3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__57819e3c/2026-09-05_08-23-09/replicate_42/results.json",
+            "programMember": "packing3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__57819e3c/2026-09-05_08-23-09/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 2,
+            "instanceSeed": 6578458030060481490,
+            "resultsSha256": "d6f37c09cf254d571a90da822f890b290e0edb7d98b1a5dc04bfa5256dbcf5eb",
+            "approachSha256": "cd6a84739d89b46846772147b6ca4e24910e7fdcbde8f5267804ad4fee94f8c6",
+            "archivedSolved": false,
+            "archivedSteps": 750,
+            "initialFrameSha256": "56d979c7ee10ea70ccd4852f0ab98bc768a0e0ef5c2e27ff8a12dca44791125c",
+            "videoSha256": "bf59d0016db7d4c971d20bdb959c35f613afea7920473fb810da516e08952656"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "Transport3D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/Transport3D-claude.mp4",
+          "poster": "assets/policies/Transport3D-claude.jpg",
+          "solved": true,
+          "steps": 446,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "kinematic3d.zip",
+            "resultsMember": "transport3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__88fd6989/2026-09-05_06-39-43/replicate_42/results.json",
+            "programMember": "transport3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__88fd6989/2026-09-05_06-39-43/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 2,
+            "instanceSeed": 6578458030060481490,
+            "resultsSha256": "6f986633d0a38892129fc4155bb4628d7a6e325bda0b5052c03a66e3974d4009",
+            "approachSha256": "ff5bd3a09158b4a546f957ad63aafca1a6f92cbe0ca4f7670bbe08cd57643d2a",
+            "archivedSolved": true,
+            "archivedSteps": 458,
+            "initialFrameSha256": "2df563aaf646f4135c4bd4203be57f28796fff93f57b2bb404ef37bb6f95335f",
+            "videoSha256": "9e6f0999ac2c99e6fc17b59896344f0f068b41325ac47b76a70e809462f5b178"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/Transport3D-codex.mp4",
+          "poster": "assets/policies/Transport3D-codex.jpg",
+          "solved": false,
+          "steps": 1700,
+          "source": {
+            "collection": "Codex Reruns",
+            "archive": "transport3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__d87b83ce.zip",
+            "resultsMember": "transport3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__d87b83ce/2026-09-15_19-41-13/replicate_222/results.json",
+            "programMember": "transport3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__d87b83ce/2026-09-15_19-41-13/replicate_222/sandbox/approach.py",
+            "replicateSeed": 222,
+            "episode": 2,
+            "instanceSeed": 6578458030060481490,
+            "resultsSha256": "fc098b01ffb0a9c32fd4fc804fd4c9cc40df1427d86fc4657c66f176fe2c0354",
+            "approachSha256": "29605aa36c4a61f2094ddc64449e41382f09d998b484022ed4a99cd4d56d3f1c",
+            "archivedSolved": false,
+            "archivedSteps": 1700,
+            "initialFrameSha256": "2df563aaf646f4135c4bd4203be57f28796fff93f57b2bb404ef37bb6f95335f",
+            "initialStateSha256": "4cd937ca2a0f3fe95d7c48dc5b2aa10d263a2a05e50a836f04f4a6cc2022ada1",
+            "videoSha256": "b85c89497c19f275223f176404352fa6cd02b4949bf064e6a724238bf6b347b3"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/Transport3D-genplan.mp4",
+          "poster": "assets/policies/Transport3D-genplan.jpg",
+          "solved": false,
+          "steps": 1700,
+          "source": {
+            "collection": "Final/Baselines/GenPlan",
+            "archive": "transport3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__c9f57513.zip",
+            "resultsMember": "transport3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__c9f57513/2026-09-06_11-03-55/replicate_42/results.json",
+            "programMember": "transport3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__c9f57513/2026-09-06_11-03-55/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 2,
+            "instanceSeed": 6578458030060481490,
+            "resultsSha256": "813b4ca9cf275292768de35362b4a2dfcbadae7f1dac3922d63dc3acb5ddccdb",
+            "approachSha256": "9c78504a69fb1cfcf9434575b9cff22e64de746a778ff540000314027e9d8f0f",
+            "archivedSolved": false,
+            "archivedSteps": 1700,
+            "initialFrameSha256": "2df563aaf646f4135c4bd4203be57f28796fff93f57b2bb404ef37bb6f95335f",
+            "videoSha256": "58cacde68efd01cd49b6cb1d8ad4854a0a05721d5112a95d6b4f51cc25552fad"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "Table3D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/Table3D-claude.mp4",
+          "poster": "assets/policies/Table3D-claude.jpg",
+          "solved": true,
+          "steps": 18,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "kinematic3d.zip",
+            "resultsMember": "table3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__827d1f37/2026-09-05_08-47-14/replicate_42/results.json",
+            "programMember": "table3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__827d1f37/2026-09-05_08-47-14/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 37,
+            "instanceSeed": 3206203727921791616,
+            "resultsSha256": "6c70907903494392bff494ad5a4ae6f24739af101e2943e5cf1b2b3a14105b06",
+            "approachSha256": "db646133a0f5cefba9dde76cb062e59608ee16e477ea81c0f96e3c764fa334e4",
+            "archivedSolved": true,
+            "archivedSteps": 19,
+            "initialFrameSha256": "47e9d1ce7f65ee0e0dd586cf327512f12ff38c10c95228f4f37280a9729af991",
+            "videoSha256": "cd6b82015c9747eb5195cb311f2c74fe8051548b63d7593c0f626ef5bd92d2e8"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/Table3D-codex.mp4",
+          "poster": "assets/policies/Table3D-codex.jpg",
+          "solved": true,
+          "steps": 6,
+          "source": {
+            "collection": "Final/Blackbox/Codex GPT5.6 Sol",
+            "archive": "kinematic3d.zip",
+            "resultsMember": "table3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__1bc89f20/2026-09-09_19-21-01/replicate_42/results.json",
+            "programMember": "table3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__1bc89f20/2026-09-09_19-21-01/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 37,
+            "instanceSeed": 3206203727921791616,
+            "resultsSha256": "c1122a8dcee97005730b525ed1d65ef592ac7463441e70d33bc6cf5e4c4d1baa",
+            "approachSha256": "38476f2115574f82d8d939d952cd2430288984ce4ee6f4aa878c2eb667f56e38",
+            "archivedSolved": true,
+            "archivedSteps": 6,
+            "initialFrameSha256": "47e9d1ce7f65ee0e0dd586cf327512f12ff38c10c95228f4f37280a9729af991",
+            "videoSha256": "c05701a88b588a6d661c2f8e0c59049cdfe46c6ea6c0443f1e5fdb5bf4aee06b"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/Table3D-genplan.mp4",
+          "poster": "assets/policies/Table3D-genplan.jpg",
+          "solved": false,
+          "steps": 750,
+          "source": {
+            "collection": "Final/Baselines/GenPlan",
+            "archive": "table3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__02288e24.zip",
+            "resultsMember": "multirun/table3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__02288e24/2026-09-05_18-47-20/replicate_42/results.json",
+            "programMember": "multirun/table3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__02288e24/2026-09-05_18-47-20/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 37,
+            "instanceSeed": 3206203727921791616,
+            "resultsSha256": "d02a4bf363c70fc6e0415b7a1317ad19a399e97db8af9836a4bd8e3247336b92",
+            "approachSha256": "579dc6774282f590e8237fbef5965f68fc69db43aa343cf250f9ae4819d68110",
+            "archivedSolved": false,
+            "archivedSteps": 750,
+            "initialFrameSha256": "47e9d1ce7f65ee0e0dd586cf327512f12ff38c10c95228f4f37280a9729af991",
+            "videoSha256": "477a1488565e4c4f918fde15df0a98e900d6db4754de3fc7ae24f23e6acd471d"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "BaseMotion3D",
+      "videos": [
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/BaseMotion3D-codex.mp4",
+          "poster": "assets/policies/BaseMotion3D-codex.jpg",
+          "solved": true,
+          "steps": 3,
+          "source": {
+            "collection": "Final/Blackbox/Codex GPT5.6 Sol",
+            "archive": "basemotion3d__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__b464e889.zip",
+            "resultsMember": "basemotion3d__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__b464e889/2026-09-14_15-12-23_basemotion/replicate_42/results.json",
+            "programMember": "basemotion3d__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__b464e889/2026-09-14_15-12-23_basemotion/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "2f84c979adfd02f1ec6d66760f3f2ba9990437b352bbfe7992878a3f6f3b296e",
+            "approachSha256": "69283a3e0dcbcc50d2229216b6796f04eec2b62c0013511f28b63a8759aeec03",
+            "archivedSolved": true,
+            "archivedSteps": 3,
+            "initialFrameSha256": "648471cdbf8854973c68d7b725b7f67229e97e8ba774b98bd0757983eae910f6",
+            "videoSha256": "04f0158840dedf84c3ed3a28a61c9b5389c94250172868051b67f05fe02623b7"
+          }
+        }
+      ],
+      "unavailable": [
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan",
+          "reason": "No matching frozen-program archive in the final experiment collection."
+        },
+        {
+          "method": "claude",
+          "label": "Claude Code",
+          "reason": "No matching run in the available final archive."
+        }
+      ]
+    },
+    {
+      "id": "BalanceBeam3D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/BalanceBeam3D-claude.mp4",
+          "poster": "assets/policies/BalanceBeam3D-claude.jpg",
+          "solved": true,
+          "steps": 534,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "dynamic3d.zip",
+            "resultsMember": "balancebeam3d__agentic__none__blackbox__strict__claude_opus5__timeout_60s__78ec7f36/2026-09-09_23-34-48/replicate_42/results.json",
+            "programMember": "balancebeam3d__agentic__none__blackbox__strict__claude_opus5__timeout_60s__78ec7f36/2026-09-09_23-34-48/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "862b732d4da5a8a2de45efa80d81848b068b72488d2fdb3b0b287392d2d43772",
+            "approachSha256": "867c6f469f04f024e3fcc64978cc4effadc94ded179e4627d3b4fd6dba0fc14f",
+            "archivedSolved": true,
+            "archivedSteps": 534,
+            "initialFrameSha256": "29c9922cda55c21a32af46b34140cebd1b9f20056d1557af90bb9682aa2ed460",
+            "videoSha256": "ca803c438347d94eaae47451de650f034655990d2a3631d1ee8c745a2aa740f1"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/BalanceBeam3D-codex.mp4",
+          "poster": "assets/policies/BalanceBeam3D-codex.jpg",
+          "solved": true,
+          "steps": 395,
+          "source": {
+            "collection": "Final/Blackbox/Codex GPT5.6 Sol",
+            "archive": "dynamic3d.zip",
+            "resultsMember": "balancebeam3d__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__67b14397/2026-09-10_01-29-04/replicate_42/results.json",
+            "programMember": "balancebeam3d__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__67b14397/2026-09-10_01-29-04/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "86bca4c28579af582b599520972611da423f70ef0e61e992b6db8b67b06db512",
+            "approachSha256": "cb8f82a3314abe024e78fc57dea9649554c1f764d248340a8f762e01e813e0dc",
+            "archivedSolved": true,
+            "archivedSteps": 395,
+            "initialFrameSha256": "29c9922cda55c21a32af46b34140cebd1b9f20056d1557af90bb9682aa2ed460",
+            "videoSha256": "db7a48d3e592564ca52006fd9a1c9fe962bd4b48cefe661b4305e41d190df1a9"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/BalanceBeam3D-genplan.mp4",
+          "poster": "assets/policies/BalanceBeam3D-genplan.jpg",
+          "solved": false,
+          "steps": 1000,
+          "source": {
+            "collection": "Final/Baselines/GenPlan",
+            "archive": "balancebeam3d__llm_genplan__none__cli_opus5__timeout_60s__6bf31b55__post_kindergarden_fix.zip",
+            "resultsMember": "multirun/balancebeam3d__llm_genplan__none__cli_opus5__timeout_60s__6bf31b55/2026-09-14_05-10-45/replicate_42/results.json",
+            "programMember": "multirun/balancebeam3d__llm_genplan__none__cli_opus5__timeout_60s__6bf31b55/2026-09-14_05-10-45/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "bfadcdebb7b27fb1fad6a7cb11f2bb38fa576f2972a56046a7021005e7794721",
+            "approachSha256": "67e1116c3a0f61d4db85a5f501ac8ad47e36afea84ebc7dcaa3939b215761965",
+            "archivedSolved": false,
+            "archivedSteps": 1000,
+            "initialFrameSha256": "29c9922cda55c21a32af46b34140cebd1b9f20056d1557af90bb9682aa2ed460",
+            "videoSha256": "0122b24e8cbadf24404ae142f8bae1db3c328b3c0b728c4ae0796af737da0286"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "ConstrainedCupboard3D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/ConstrainedCupboard3D-claude.mp4",
+          "poster": "assets/policies/ConstrainedCupboard3D-claude.jpg",
+          "solved": false,
+          "steps": 1600,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "dynamic3d.zip",
+            "resultsMember": "constrainedcupboard3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__a15cbc70/2026-09-10_08-48-49/replicate_42/results.json",
+            "programMember": "constrainedcupboard3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__a15cbc70/2026-09-10_08-48-49/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 2,
+            "instanceSeed": 6578458030060481490,
+            "resultsSha256": "dbea988c7c9a057034e596854d72519cddd0d7109ad9eaaf82ba2f8632883419",
+            "approachSha256": "8d56b6f1c33114baaf8d7acc5608074e1e67453ff6f2dcd8a3dd834e9a9ad497",
+            "archivedSolved": false,
+            "archivedSteps": 1600,
+            "initialFrameSha256": "1562799281c7cf4bd9220b14d46b8db3d31f1afc7e7143454740b574789c4810",
+            "videoSha256": "b4a884bad695a82669d25edb043696fe3f816c94bb01f972197f1c00d1dfb23f"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/ConstrainedCupboard3D-codex.mp4",
+          "poster": "assets/policies/ConstrainedCupboard3D-codex.jpg",
+          "solved": false,
+          "steps": 1600,
+          "source": {
+            "collection": "Codex Reruns",
+            "archive": "constrainedcupboard3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__cef42282.zip",
+            "resultsMember": "constrainedcupboard3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__cef42282/2026-09-15_17-00-38/replicate_42/results.json",
+            "programMember": "constrainedcupboard3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__cef42282/2026-09-15_17-00-38/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 2,
+            "instanceSeed": 6578458030060481490,
+            "resultsSha256": "3049873ece80e877055894bbe5bc4351685b7aa76cb42b0267c29a10f7f0fe89",
+            "approachSha256": "c0fc5e140420fa3ebcfe004565f3a7d732f25a067d1c14d3bc94315f42ad0484",
+            "archivedSolved": false,
+            "archivedSteps": 1600,
+            "initialFrameSha256": "1562799281c7cf4bd9220b14d46b8db3d31f1afc7e7143454740b574789c4810",
+            "initialStateSha256": "0e0de9da0c229835c166bf077fc413ffa79b1d53d3bfa9857a65538da5fba28c",
+            "videoSha256": "7082bf3083e06411009035c50080348dd9ca1833776e21aab71f7ccdfff249a8"
+          }
+        }
+      ],
+      "unavailable": [
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan",
+          "reason": "No matching frozen-program archive in the final experiment collection."
+        }
+      ]
+    },
+    {
+      "id": "Dynamo3D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/Dynamo3D-claude.mp4",
+          "poster": "assets/policies/Dynamo3D-claude.jpg",
+          "solved": true,
+          "steps": 289,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "dynamic3d.zip",
+            "resultsMember": "dynamo3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__589142fc/2026-09-10_19-32-15_rescore/replicate_42/results.json",
+            "programMember": "dynamo3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__589142fc/2026-09-10_19-32-15_rescore/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 1,
+            "instanceSeed": 5553887448546940950,
+            "resultsSha256": "b719edf95c4f37ecf2e1dc0d65a822d656397fbccc4b61ad583d59b319fe75d5",
+            "approachSha256": "2f058593073ef583b6a091710594606f06cbbe8820fd3c79432d66903fe0a79e",
+            "archivedSolved": true,
+            "archivedSteps": 289,
+            "initialFrameSha256": "d2c621cc5529f414b531bbf2374bc30dd0b7451544f640ecd5b013f2e5ac46f3",
+            "videoSha256": "046b876588fcf33d8199ec188a8e110776091b36972665cb7c0e99e3f93b9fd2",
+            "initialStateSha256": "a57a4bf413861256f32bcea6b8f4fce832ae00bcc4650743d74ca424a8071338"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/Dynamo3D-codex.mp4",
+          "poster": "assets/policies/Dynamo3D-codex.jpg",
+          "solved": true,
+          "steps": 50,
+          "source": {
+            "collection": "Codex Reruns",
+            "archive": "dynamo3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__375249f1.zip",
+            "resultsMember": "dynamo3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__375249f1/2026-09-15_21-44-43_UTC/replicate_424/results.json",
+            "programMember": "dynamo3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__375249f1/2026-09-15_21-44-43_UTC/replicate_424/sandbox/approach.py",
+            "replicateSeed": 424,
+            "episode": 1,
+            "instanceSeed": 5553887448546940950,
+            "resultsSha256": "aa939411639717bbc983d6846b68e576cf94cb1a3143c974e3407fa3a4577bbd",
+            "approachSha256": "b152503a66616fd77bc729d3ff6ecb111b5df38c8c0f48614f57f2e1c0537099",
+            "archivedSolved": true,
+            "archivedSteps": 50,
+            "initialFrameSha256": "b94de467b67fb866b5bf53f0915872a3ef65eb402f493552142d47c812bcd297",
+            "initialStateSha256": "a57a4bf413861256f32bcea6b8f4fce832ae00bcc4650743d74ca424a8071338",
+            "videoSha256": "fbf33ff47cd07d570037486bfd63a9df6fae099ffc0269ae2b84c9ea0d391b7c"
+          }
+        }
+      ],
+      "unavailable": [
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan",
+          "reason": "No matching frozen-program archive in the final experiment collection."
+        }
+      ]
+    },
+    {
+      "id": "Rearrange3D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/Rearrange3D-claude.mp4",
+          "poster": "assets/policies/Rearrange3D-claude.jpg",
+          "solved": false,
+          "steps": 1000,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "dynamic3d.zip",
+            "resultsMember": "rearrange3d__agentic__none__blackbox__strict__claude_opus5__timeout_60s__56ea42c0/2026-09-10_06-35-39/replicate_42/results.json",
+            "programMember": "rearrange3d__agentic__none__blackbox__strict__claude_opus5__timeout_60s__56ea42c0/2026-09-10_06-35-39/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "02ff665ad8d45b1adf161576be2f2aa29ddfaf47e604f007ac1a2e27c859c830",
+            "approachSha256": "e6b75cbf81e6598c0537bf71ce242e3e657ddb4b36b267c716f2419259221110",
+            "archivedSolved": false,
+            "archivedSteps": 1000,
+            "initialFrameSha256": "898789d99e9a1823adbdf3e06e424413291d3054889372722175e8cbbaffcc98",
+            "videoSha256": "8e40b7617112b0dcf156e52f482f768a22bc9380d7340b57b736762b39634559"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/Rearrange3D-codex.mp4",
+          "poster": "assets/policies/Rearrange3D-codex.jpg",
+          "solved": false,
+          "steps": 1000,
+          "source": {
+            "collection": "Codex Reruns",
+            "archive": "rearrange3d__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__b9b9f664.zip",
+            "resultsMember": "rearrange3d__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__b9b9f664/2026-09-15_21-44-43_UTC/replicate_42/results.json",
+            "programMember": "rearrange3d__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__b9b9f664/2026-09-15_21-44-43_UTC/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "7636bf5e25e8eded8cc8299762decb31ca24e2c530119f48f84a7b451ab104b9",
+            "approachSha256": "f1aca39bc7722dc331a1cb821e2e162697742d00326191978ac0afc97a577753",
+            "archivedSolved": false,
+            "archivedSteps": 1000,
+            "initialFrameSha256": "898789d99e9a1823adbdf3e06e424413291d3054889372722175e8cbbaffcc98",
+            "initialStateSha256": "7fd62aa4ca78bc5d00e5ff8308bbc0104af73708f158b446930f41046bb60c0c",
+            "videoSha256": "8b21293d9b7d7fa58f7db0298b04bb56379b3cce89543a5b5eb67fe1e3f29349"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/Rearrange3D-genplan.mp4",
+          "poster": "assets/policies/Rearrange3D-genplan.jpg",
+          "solved": false,
+          "steps": 1000,
+          "source": {
+            "collection": "Final/Baselines/GenPlan",
+            "archive": "rearrange3d__llm_genplan__none__cli_opus5__timeout_60s__80185e71__post_kindergarden_fix.zip",
+            "resultsMember": "multirun/rearrange3d__llm_genplan__none__cli_opus5__timeout_60s__80185e71/2026-09-14_16-03-25/replicate_42/results.json",
+            "programMember": "multirun/rearrange3d__llm_genplan__none__cli_opus5__timeout_60s__80185e71/2026-09-14_16-03-25/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "2627fdd7ea8c50fa26bcc51ccc8c763b197847b85384a0fc547b3a79922dfb99",
+            "approachSha256": "e895188d8aa63bd8f28929e447d30aea70fa1f845f02cea9642c98b165f8ba87",
+            "archivedSolved": false,
+            "archivedSteps": 1000,
+            "initialFrameSha256": "898789d99e9a1823adbdf3e06e424413291d3054889372722175e8cbbaffcc98",
+            "videoSha256": "fec781cb2152c9b509a0e14cf0b3566d4e4dc02fcd96b2565336e5d1f1387057"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "ScoopPour3D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/ScoopPour3D-claude.mp4",
+          "poster": "assets/policies/ScoopPour3D-claude.jpg",
+          "solved": true,
+          "steps": 250,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "dynamic3d.zip",
+            "resultsMember": "scooppour3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__b7ffde94/2026-09-10_19-55-20/replicate_42/results.json",
+            "programMember": "scooppour3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__b7ffde94/2026-09-10_19-55-20/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 5,
+            "instanceSeed": 5716358502980765232,
+            "resultsSha256": "a4c83c58da35e246c2a9c7ca28d47fe033aa27d4fff60fa343bdb5007edeb15a",
+            "approachSha256": "adff2c28a1d148f0ea5390b26931c60448cb17bf2d71edf7a4de38ce2ec4c04c",
+            "archivedSolved": true,
+            "archivedSteps": 233,
+            "initialFrameSha256": "6622fbcb1bfba0e4afdde02ad9abd3bee18a602573af879d9ae08a9880df43c3",
+            "videoSha256": "b021ee960efe7d917b21931f1a073e8d45154b1a4f02df18c68200d60b7ef048"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/ScoopPour3D-codex.mp4",
+          "poster": "assets/policies/ScoopPour3D-codex.jpg",
+          "solved": false,
+          "steps": 800,
+          "source": {
+            "collection": "Codex Reruns",
+            "archive": "scooppour3d__seed24.zip",
+            "resultsMember": "scooppour3d__seed24/replicate_24/results.json",
+            "programMember": "scooppour3d__seed24/replicate_24/sandbox/approach.py",
+            "replicateSeed": 24,
+            "episode": 5,
+            "instanceSeed": 5716358502980765232,
+            "resultsSha256": "dab49449396ced5ae1f3ac50ea55073dd78c8e6c3e001542b6de160168944709",
+            "approachSha256": "7629c85df762392c023e8d4a24b3bbe20de0fbc1d70b849c085de7fef0bf83a3",
+            "archivedSolved": false,
+            "archivedSteps": 800,
+            "initialFrameSha256": "6622fbcb1bfba0e4afdde02ad9abd3bee18a602573af879d9ae08a9880df43c3",
+            "initialStateSha256": "640d29b1659d04fe52464562479ccc83e19fa4410bd4003ae8276173644bbcc8",
+            "videoSha256": "88de7cae486d86e81bd03555a05ed1c7ff76f4cbd7cace783f64ef6f93ad9322"
+          }
+        }
+      ],
+      "unavailable": [
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan",
+          "reason": "No matching frozen-program archive in the final experiment collection."
+        }
+      ]
+    },
+    {
+      "id": "Shelf3D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/Shelf3D-claude.mp4",
+          "poster": "assets/policies/Shelf3D-claude.jpg",
+          "solved": true,
+          "steps": 557,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "dynamic3d.zip",
+            "resultsMember": "dynamicshelf3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__c7ece5c3/2026-09-10_05-42-10/replicate_42/results.json",
+            "programMember": "dynamicshelf3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__c7ece5c3/2026-09-10_05-42-10/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 1,
+            "instanceSeed": 5553887448546940950,
+            "resultsSha256": "4f7ba4252fa2d9ea0c95034ec4bafe60addeaffd9bece3a96f55633b81e8e545",
+            "approachSha256": "3060e0eea181b69e7cfb731a85501a05c8d8609b64538fc36d88c61a2c3585da",
+            "archivedSolved": true,
+            "archivedSteps": 526,
+            "initialFrameSha256": "44825719a4aa09a5ac03681ceb1c35ed4e9c990583104dd0802a819eb56fd62e",
+            "videoSha256": "d8c24576fb1b3eca6602a977d6cda35a8f2315464be305df6002916566ae70bf"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/Shelf3D-codex.mp4",
+          "poster": "assets/policies/Shelf3D-codex.jpg",
+          "solved": true,
+          "steps": 940,
+          "source": {
+            "collection": "Codex Reruns",
+            "archive": "dynamicshelf3d__seed42.zip",
+            "resultsMember": "dynamicshelf3d__seed42/replicate_42/results.json",
+            "programMember": "dynamicshelf3d__seed42/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 1,
+            "instanceSeed": 5553887448546940950,
+            "resultsSha256": "02eb06a1d1e940877a5029ed85ce81888ceb2a78610fa476f2fd9e28ec257f16",
+            "approachSha256": "bbd1d918d091db403adedd6f9defc34ef77bbbe7bedc7cfd309ce6f9b3a630bc",
+            "archivedSolved": true,
+            "archivedSteps": 940,
+            "initialFrameSha256": "44825719a4aa09a5ac03681ceb1c35ed4e9c990583104dd0802a819eb56fd62e",
+            "initialStateSha256": "792af1b57f997439515f6c984dfa549d3f45e2ab2fae4533ec7482acea57f82b",
+            "videoSha256": "e9f39bf6e5853f08bcbbe9fbd086710ea47e4d98bff8f98493e09de101f2a7e4"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/Shelf3D-genplan.mp4",
+          "poster": "assets/policies/Shelf3D-genplan.jpg",
+          "solved": false,
+          "steps": 1200,
+          "source": {
+            "collection": "Final/Baselines/GenPlan",
+            "archive": "dynamicshelf3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__ed30005d.zip",
+            "resultsMember": "dynamicshelf3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__ed30005d/2026-09-09_20-35-27/replicate_42/results.json",
+            "programMember": "dynamicshelf3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__ed30005d/2026-09-09_20-35-27/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 1,
+            "instanceSeed": 5553887448546940950,
+            "resultsSha256": "184439a6a30950ad64211de39aeb484fdae803950afce114119b142f32a919f9",
+            "approachSha256": "028f349a81cfec152fd1bb42ab46a8503d19bfcb42920ff982424ce07b9410d4",
+            "archivedSolved": false,
+            "archivedSteps": 1200,
+            "initialFrameSha256": "44825719a4aa09a5ac03681ceb1c35ed4e9c990583104dd0802a819eb56fd62e",
+            "videoSha256": "5eb14e83fc13c41fc60db17d197486e6a1eb3f4a312191fa2c06bb6afb143f56"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "SortClutteredBlocks3D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/SortClutteredBlocks3D-claude.mp4",
+          "poster": "assets/policies/SortClutteredBlocks3D-claude.jpg",
+          "solved": true,
+          "steps": 251,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "dynamic3d.zip",
+            "resultsMember": "sortclutteredblocks3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__c664fa0e/2026-09-11_11-38-13/replicate_42/results.json",
+            "programMember": "sortclutteredblocks3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__c664fa0e/2026-09-11_11-38-13/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 2,
+            "instanceSeed": 6578458030060481490,
+            "resultsSha256": "a573e66255805682ac54ea5a398459763d8d6f68da1e4a2fe18fe5c62b7c745f",
+            "approachSha256": "5fdd794ea6c3095c3d60d47d811161b0a426573a2bb437ae50278f691ce05914",
+            "archivedSolved": true,
+            "archivedSteps": 251,
+            "initialFrameSha256": "92f0aa262d2e20ab0065654038cb76dbb6c9f70b14ebd3435a3681162d248cda",
+            "videoSha256": "483eeeb02d3cc4a0ea0517c898a773550d6261cf7c227c28d6d7103aeaeda4d5"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/SortClutteredBlocks3D-codex.mp4",
+          "poster": "assets/policies/SortClutteredBlocks3D-codex.jpg",
+          "solved": false,
+          "steps": 1200,
+          "source": {
+            "collection": "Codex Reruns",
+            "archive": "sortclutteredblocks3d__seed42.zip",
+            "resultsMember": "sortclutteredblocks3d__seed42/replicate_42/results.json",
+            "programMember": "sortclutteredblocks3d__seed42/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 2,
+            "instanceSeed": 6578458030060481490,
+            "resultsSha256": "6d8262f8647b6cd7bf5b33813f5bb11f9c547930a1b6b3a1407e632e67941949",
+            "approachSha256": "d38887378a2f2954af8edb36d03d9b036f8eacfff027c21e601e1fae27e06235",
+            "archivedSolved": false,
+            "archivedSteps": 1200,
+            "initialFrameSha256": "92f0aa262d2e20ab0065654038cb76dbb6c9f70b14ebd3435a3681162d248cda",
+            "initialStateSha256": "e8205cf7a5a7441283eae70dc5f8fe714a9a46ea4f06050dfb6f4bf7fd68afb0",
+            "videoSha256": "da9c7cad6ee16431b88474104038df9314eb949014b811f52be2f806f67dcffe"
+          }
+        }
+      ],
+      "unavailable": [
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan",
+          "reason": "No matching frozen-program archive in the final experiment collection."
+        }
+      ]
+    },
+    {
+      "id": "SweepIntoDrawer3D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/SweepIntoDrawer3D-claude.mp4",
+          "poster": "assets/policies/SweepIntoDrawer3D-claude.jpg",
+          "solved": false,
+          "steps": 1000,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "dynamic3d.zip",
+            "resultsMember": "sweepintodrawer3d__agentic__none__blackbox__strict__claude_opus5__timeout_60s__4786c7d1/2026-09-10_13-37-12/replicate_42/results.json",
+            "programMember": "sweepintodrawer3d__agentic__none__blackbox__strict__claude_opus5__timeout_60s__4786c7d1/2026-09-10_13-37-12/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "c1e7f3ec49f167b7a51f09b8aab40520032552901812f41a29df66d556291c82",
+            "approachSha256": "be6f04bd58b2ad28ac91bb038d992fb22032c8b24ea62d3c92337e3bd97a6778",
+            "archivedSolved": false,
+            "archivedSteps": 1000,
+            "initialFrameSha256": "568d4a89fa3c0f4b598cec4fd2414de328bda3a2c2ba4ae66496bcf532aa4b00",
+            "videoSha256": "b9c386f2081c6c1ef1110324e07873635085c34336d0d460bd4d6a71a9beff19"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/SweepIntoDrawer3D-codex.mp4",
+          "poster": "assets/policies/SweepIntoDrawer3D-codex.jpg",
+          "solved": false,
+          "steps": 1000,
+          "source": {
+            "collection": "Final/Blackbox/Codex GPT5.6 Sol",
+            "archive": "dynamic3d.zip",
+            "resultsMember": "sweepintodrawer3d__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__42f55eee/2026-09-10_09-06-03/replicate_42/results.json",
+            "programMember": "sweepintodrawer3d__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__42f55eee/2026-09-10_09-06-03/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "c13ce4d0373cb361dda6685d0d06b790c9b0add4ff0a1d2d6379dc6ecd10c2d5",
+            "approachSha256": "dbeaeb4547d089602f087cbdab2c64dceb3a8b8654204c8f612e83cc55d4d931",
+            "archivedSolved": false,
+            "archivedSteps": 1000,
+            "initialFrameSha256": "568d4a89fa3c0f4b598cec4fd2414de328bda3a2c2ba4ae66496bcf532aa4b00",
+            "videoSha256": "1d20dd77196aeb9458d2b8c338fd1772c5a19eb70b7ccab0bdb67e158c47d03b"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/SweepIntoDrawer3D-genplan.mp4",
+          "poster": "assets/policies/SweepIntoDrawer3D-genplan.jpg",
+          "solved": false,
+          "steps": 1000,
+          "source": {
+            "collection": "Final/Baselines/GenPlan",
+            "archive": "sweepintodrawer3d__llm_genplan__none__cli_opus5__timeout_60s__8adf7e50__post_kindergarden_fix.zip",
+            "resultsMember": "multirun/sweepintodrawer3d__llm_genplan__none__cli_opus5__timeout_60s__8adf7e50/2026-09-14_17-57-49/replicate_42/results.json",
+            "programMember": "multirun/sweepintodrawer3d__llm_genplan__none__cli_opus5__timeout_60s__8adf7e50/2026-09-14_17-57-49/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "2af38775e0e309d0ddf78ff7382af38cbfabe56a7fc036d137fd6c43cf525f2d",
+            "approachSha256": "837b14497facbf1bc6a096fb730d22aee25918dc7059451e5f7d5e9a568bda48",
+            "archivedSolved": false,
+            "archivedSteps": 1000,
+            "initialFrameSha256": "568d4a89fa3c0f4b598cec4fd2414de328bda3a2c2ba4ae66496bcf532aa4b00",
+            "videoSha256": "e57f49b934701e5f2747b732b3044a22064dcdb41199dca93dfba17f6921e7cf"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "SweepSimple3D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/SweepSimple3D-claude.mp4",
+          "poster": "assets/policies/SweepSimple3D-claude.jpg",
+          "solved": false,
+          "steps": 620,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "dynamic3d.zip",
+            "resultsMember": "sweepsimple3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__18e456ad/2026-09-10_15-07-39/replicate_42/results.json",
+            "programMember": "sweepsimple3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__18e456ad/2026-09-10_15-07-39/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "35ed1ef254ce44fb271e261a28673c6eee97960e87cca4799b880c8522636fff",
+            "approachSha256": "540a5f1283603cffe803ffdfda40140d68819daf25684cf39dca018e4ca6453a",
+            "archivedSolved": false,
+            "archivedSteps": 620,
+            "initialFrameSha256": "c38c0b09875f5545bdbd396cc9c7648316329e615ad985176bfeb61292c03b10",
+            "videoSha256": "194db0f7e80b217621aefa98bbfa0d1ae57de9d13f5a9a2a7892fe1c6dbb4679",
+            "initialStateSha256": "204a5bf6b2e94784c059c8cbc49895f7ab7cee8ecd0d2d5c08c6f269c2ebd193"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/SweepSimple3D-codex.mp4",
+          "poster": "assets/policies/SweepSimple3D-codex.jpg",
+          "solved": false,
+          "steps": 620,
+          "source": {
+            "collection": "Codex Reruns",
+            "archive": "sweepsimple3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__f81825ae.zip",
+            "resultsMember": "sweepsimple3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__f81825ae/2026-09-15_17-01-01/replicate_42/results.json",
+            "programMember": "sweepsimple3d_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__f81825ae/2026-09-15_17-01-01/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 0,
+            "instanceSeed": 7449868751085282632,
+            "resultsSha256": "52fff529be3d7eb1b60cd626d28ad9326439875401bd54516fa8dde28df6a4d4",
+            "approachSha256": "96ceda8606b3e7e9d0acea2062ec8437a3d0e2afa6a9122d6776e9403bcd39f1",
+            "archivedSolved": false,
+            "archivedSteps": 620,
+            "initialFrameSha256": "a849e40732c29be920dafbde1240e3675889139c5fe6092a70f303c58e70a1aa",
+            "initialStateSha256": "204a5bf6b2e94784c059c8cbc49895f7ab7cee8ecd0d2d5c08c6f269c2ebd193",
+            "videoSha256": "e2c037c9528fb18f8706641893f37a5b180a2627dd417fb4567f3876db98b821"
+          }
+        }
+      ],
+      "unavailable": [
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan",
+          "reason": "No matching frozen-program archive in the final experiment collection."
+        }
+      ]
+    },
+    {
+      "id": "Tossing3D",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/Tossing3D-claude.mp4",
+          "poster": "assets/policies/Tossing3D-claude.jpg",
+          "solved": true,
+          "steps": 239,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "dynamic3d.zip",
+            "resultsMember": "tossing3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__e3f09576/2026-09-11_23-13-42/replicate_42/results.json",
+            "programMember": "tossing3d_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__e3f09576/2026-09-11_23-13-42/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 1,
+            "instanceSeed": 5553887448546940950,
+            "resultsSha256": "b925ed6a671ee7fbb1f9e898a5e037789e5dbcb361fd3f8cda30004b244b4d36",
+            "approachSha256": "440fe0483a6ff910278b1a9d0673375dda6de30929abd8f9c58fab3679d73d62",
+            "archivedSolved": true,
+            "archivedSteps": 241,
+            "initialFrameSha256": "b31f77f96c8b22bfe12d10b2bde45ccfeb00ee48cc5c06e0573e106cce7f174d",
+            "videoSha256": "7a5c854c6a7c7ca50f4cb51b1fde8a24df7654a5a2a579075bb197824b64b638"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/Tossing3D-codex.mp4",
+          "poster": "assets/policies/Tossing3D-codex.jpg",
+          "solved": false,
+          "steps": 1200,
+          "source": {
+            "collection": "Codex Reruns",
+            "archive": "tossing3d__seed42.zip",
+            "resultsMember": "tossing3d__seed42/replicate_42/results.json",
+            "programMember": "tossing3d__seed42/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 1,
+            "instanceSeed": 5553887448546940950,
+            "resultsSha256": "323060f300ed237d1bb12112601c67942cee92b75bbdff4c112576b8e87fd427",
+            "approachSha256": "148d1fb1ca044919f952f902f6feae4fc640875db74fa0c521406830e11d878f",
+            "archivedSolved": false,
+            "archivedSteps": 1200,
+            "initialFrameSha256": "b31f77f96c8b22bfe12d10b2bde45ccfeb00ee48cc5c06e0573e106cce7f174d",
+            "initialStateSha256": "7565a88e63b31b6247b5bf8c4c2d284118775ce898bd16bb16c37121174a3bbd",
+            "videoSha256": "4352b6a49bb048f1943557a541e0e19f73864b5c30dc3433dfc138dad9c600d8"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/Tossing3D-genplan.mp4",
+          "poster": "assets/policies/Tossing3D-genplan.jpg",
+          "solved": false,
+          "steps": 1200,
+          "source": {
+            "collection": "Final/Baselines/GenPlan",
+            "archive": "tossing3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__0c3e12c6__post_kindergarden_fix.zip",
+            "resultsMember": "multirun/tossing3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__0c3e12c6/2026-09-14_14-48-16/replicate_42/results.json",
+            "programMember": "multirun/tossing3d_generalized__llm_genplan__none__cli_opus5__timeout_60s__0c3e12c6/2026-09-14_14-48-16/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 1,
+            "instanceSeed": 5553887448546940950,
+            "resultsSha256": "e41453ea36a270cebcd79448108b58277a7905cbe63d89dc2cdea746dc689012",
+            "approachSha256": "dba30396def51dea72fb7e69aa7b6753662297e9f8c7f0c56b262e69546d63c0",
+            "archivedSolved": false,
+            "archivedSteps": 1200,
+            "initialFrameSha256": "b31f77f96c8b22bfe12d10b2bde45ccfeb00ee48cc5c06e0573e106cce7f174d",
+            "videoSha256": "cf7415352a6f82052a626535c2bee64193eeea3dca8f09287135f48fb0e8acb0"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "PddlPacking",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/PddlPacking-claude.mp4",
+          "poster": "assets/policies/PddlPacking-claude.jpg",
+          "solved": true,
+          "steps": 33,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "pddlstream.zip",
+            "resultsMember": "pr2packed_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__f02e5f73/2026-09-09_13-01-39/replicate_42/results.json",
+            "programMember": "pr2packed_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__f02e5f73/2026-09-09_13-01-39/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 2,
+            "instanceSeed": 6578458030060481490,
+            "resultsSha256": "c4f601e5d3d663a05bc369e3ddd0622533e30a1857a8a02c1e4f38fc266fb95e",
+            "approachSha256": "fb246bb48fd8804aaf6142e62ef3fb4a981131b51dfc80148ce6ae0836c6e6c3",
+            "archivedSolved": true,
+            "archivedSteps": 33,
+            "initialFrameSha256": "8e99e90b785f4b6a9d5faa163a6d861c92c617cce92d045ef0bc815de15854b8",
+            "videoSha256": "dde5f5192b097e3b29bc74f266c3c5f469b446b7d7201a19a13f6653c4679b06"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/PddlPacking-codex.mp4",
+          "poster": "assets/policies/PddlPacking-codex.jpg",
+          "solved": true,
+          "steps": 106,
+          "source": {
+            "collection": "Final/Blackbox/Codex GPT5.6 Sol",
+            "archive": "pddlstream.zip",
+            "resultsMember": "pr2packed_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__e0b36e2b/2026-09-09_23-35-23/replicate_42/results.json",
+            "programMember": "pr2packed_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__e0b36e2b/2026-09-09_23-35-23/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 2,
+            "instanceSeed": 6578458030060481490,
+            "resultsSha256": "7008fc4324d3e23557deee5c729065dfb407b8e0626f9a26a02d23d42d5c042b",
+            "approachSha256": "b5fe3a2e480c98d5e7e2385e154cf54b5ef0e4949dda891716edeb047ce7046f",
+            "archivedSolved": true,
+            "archivedSteps": 106,
+            "initialFrameSha256": "8e99e90b785f4b6a9d5faa163a6d861c92c617cce92d045ef0bc815de15854b8",
+            "videoSha256": "2a27947490c2dc9ba37c39fe4c46023b5d9afb04920276fe3c998b45a3cf394d"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/PddlPacking-genplan.mp4",
+          "poster": "assets/policies/PddlPacking-genplan.jpg",
+          "solved": false,
+          "steps": 390,
+          "source": {
+            "collection": "Final/Baselines/GenPlan",
+            "archive": "pr2packed_generalized__llm_genplan__none__cli_opus5__timeout_60s__a93aa447.zip",
+            "resultsMember": "pr2packed_generalized__llm_genplan__none__cli_opus5__timeout_60s__a93aa447/2026-09-12_13-21-57/replicate_42/results.json",
+            "programMember": "pr2packed_generalized__llm_genplan__none__cli_opus5__timeout_60s__a93aa447/2026-09-12_13-21-57/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 2,
+            "instanceSeed": 6578458030060481490,
+            "resultsSha256": "e917e8026049f0d4aa23a031d3e98a679c441f940f965eb6af821d2747de91b6",
+            "approachSha256": "92e6f0c3a8b14dff92a26090ef3c4f629aaa76d01a046ebfd83dc5cce81b82e9",
+            "archivedSolved": false,
+            "archivedSteps": 390,
+            "initialFrameSha256": "8e99e90b785f4b6a9d5faa163a6d861c92c617cce92d045ef0bc815de15854b8",
+            "videoSha256": "045bab864e35e77214132e41561031cbd5aec8197eaf80649d1ae12f951e46c6"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "PddlBlocked",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/PddlBlocked-claude.mp4",
+          "poster": "assets/policies/PddlBlocked-claude.jpg",
+          "solved": true,
+          "steps": 44,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "pddlstream.zip",
+            "resultsMember": "pr2blocked_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__8f851c23/2026-09-09_18-30-41/replicate_42/results.json",
+            "programMember": "pr2blocked_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__8f851c23/2026-09-09_18-30-41/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 3,
+            "instanceSeed": 5070999126167511316,
+            "resultsSha256": "70e03fc8bb4f5954c9c6e146199bd7ba2e8d4c5f50f7f32d779818a898e7787d",
+            "approachSha256": "64a1ee056243c168f4e058df856bdd29bbf0bfe581a0b4c0658d2481a452d4c6",
+            "archivedSolved": true,
+            "archivedSteps": 44,
+            "initialFrameSha256": "b1dd1da6868d281571fbee889c8a3b1a555618fffea8c245e131d6c98ed58292",
+            "videoSha256": "cd7cdf09f0f535d224833b1a8babc60ec624f5d4c61afb021a957bff00a0e119"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/PddlBlocked-codex.mp4",
+          "poster": "assets/policies/PddlBlocked-codex.jpg",
+          "solved": true,
+          "steps": 106,
+          "source": {
+            "collection": "Codex Reruns",
+            "archive": "pr2blocked_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__28cf8f22.zip",
+            "resultsMember": "pr2blocked_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__28cf8f22/2026-09-15_19-41-44/replicate_42/results.json",
+            "programMember": "pr2blocked_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__28cf8f22/2026-09-15_19-41-44/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 3,
+            "instanceSeed": 5070999126167511316,
+            "resultsSha256": "8d72e2b0cadb353fd18d50b80fd168830ee9a160999c9505e722a721bdf37391",
+            "approachSha256": "e496a753d9bf4acd148418dfb663cf55433da59c34843880e17f766ae0025ef9",
+            "archivedSolved": true,
+            "archivedSteps": 106,
+            "initialFrameSha256": "b1dd1da6868d281571fbee889c8a3b1a555618fffea8c245e131d6c98ed58292",
+            "initialStateSha256": "837bd2d62a0f47a3804d1183b50ef72358f016b4146e47d4384b6620ec901e13",
+            "videoSha256": "4136ec6455ccf82090ebd0cba5e98932d46a7580a3dae2f1702c69d8960b51c9"
+          }
+        },
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan · Opus 5",
+          "setting": "Source code",
+          "video": "assets/policies/PddlBlocked-genplan.mp4",
+          "poster": "assets/policies/PddlBlocked-genplan.jpg",
+          "solved": false,
+          "steps": 380,
+          "source": {
+            "collection": "Final/Baselines/GenPlan",
+            "archive": "pr2blocked_generalized__llm_genplan__none__cli_opus5__timeout_60s__10257188.zip",
+            "resultsMember": "pr2blocked_generalized__llm_genplan__none__cli_opus5__timeout_60s__10257188/2026-09-12_20-28-47/replicate_42/results.json",
+            "programMember": "pr2blocked_generalized__llm_genplan__none__cli_opus5__timeout_60s__10257188/2026-09-12_20-28-47/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 3,
+            "instanceSeed": 5070999126167511316,
+            "resultsSha256": "e6f45210aa9cade03b58512ad8f7fff07165cefe49bff6ebade5e6042a65e076",
+            "approachSha256": "22973bc00e0c01c5bda39a7af4d585037d8aa1a0e6fc290d39491796f1185743",
+            "archivedSolved": false,
+            "archivedSteps": 380,
+            "initialFrameSha256": "b1dd1da6868d281571fbee889c8a3b1a555618fffea8c245e131d6c98ed58292",
+            "videoSha256": "1bb521c64814edee93009a99641eeb685e63218e098fbdbda1a1700a30bec420"
+          }
+        }
+      ],
+      "unavailable": []
+    },
+    {
+      "id": "PddlRovers",
+      "videos": [
+        {
+          "method": "claude",
+          "label": "Claude Code · Opus 5",
+          "setting": "Main setting",
+          "video": "assets/policies/PddlRovers-claude.mp4",
+          "poster": "assets/policies/PddlRovers-claude.jpg",
+          "solved": false,
+          "steps": 430,
+          "source": {
+            "collection": "Final/Blackbox/Claude Code Opus 5",
+            "archive": "rovers_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__39c67a96.zip",
+            "resultsMember": "rovers_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__39c67a96/2026-09-12_10-41-46/replicate_42/results.json",
+            "programMember": "rovers_generalized__agentic__none__blackbox__strict__claude_opus5__timeout_60s__39c67a96/2026-09-12_10-41-46/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 6,
+            "instanceSeed": 1124563562602844589,
+            "resultsSha256": "ed4188a982f1f948c0c963164dcf05c8e32e3916ede72d66212b567bfd26b827",
+            "approachSha256": "c41b758d190da7716f510c55def1e457a7f34b3f8b9fb0b87a01ed572a5d1ad4",
+            "archivedSolved": false,
+            "archivedSteps": 430,
+            "initialFrameSha256": "6004d60b7455bef6a79d06145c43cf82e7beb199428a4a5c023a43c2468ad4d1",
+            "videoSha256": "00d63eaa6929f4a185c299da8ac5bfd68b06efc14304f0064615e38c94e51f9e"
+          }
+        },
+        {
+          "method": "codex",
+          "label": "Codex · GPT-5.6 Sol",
+          "setting": "Main setting",
+          "video": "assets/policies/PddlRovers-codex.mp4",
+          "poster": "assets/policies/PddlRovers-codex.jpg",
+          "solved": true,
+          "steps": 38,
+          "source": {
+            "collection": "Final/Blackbox/Codex GPT5.6 Sol",
+            "archive": "pddlstream.zip",
+            "resultsMember": "rovers_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__5a838136/2026-09-11_11-32-00_rovers_main/replicate_42/results.json",
+            "programMember": "rovers_generalized__agentic__none__blackbox__strict__codex_gpt56sol__timeout_60s__5a838136/2026-09-11_11-32-00_rovers_main/replicate_42/sandbox/approach.py",
+            "replicateSeed": 42,
+            "episode": 6,
+            "instanceSeed": 1124563562602844589,
+            "resultsSha256": "9231151934d028909a053a0b4df87441577bc43527db0143311f30f7dac64101",
+            "approachSha256": "834f8e64a9004b9eaa27071a17a2eeda23f2804b791b1fe5a5541a94bd71e550",
+            "archivedSolved": true,
+            "archivedSteps": 38,
+            "initialFrameSha256": "6004d60b7455bef6a79d06145c43cf82e7beb199428a4a5c023a43c2468ad4d1",
+            "videoSha256": "8b77e188df4ead6c6cdc7bd97cbc8a9340a687805c66f3ec865be973778bee65"
+          }
+        }
+      ],
+      "unavailable": [
+        {
+          "method": "genplan",
+          "label": "LLMGenPlan",
+          "reason": "No matching frozen-program archive in the final experiment collection."
+        }
+      ]
+    }
+  ],
+  "codexRerunEnvironments": [
+    "ClutteredStorage2D",
+    "ConstrainedCupboard3D",
+    "Dynamo3D",
+    "Obstruction3D",
+    "Packing3D",
+    "PddlBlocked",
+    "Rearrange3D",
+    "ScoopPour3D",
+    "Shelf3D",
+    "SortClutteredBlocks3D",
+    "SweepSimple3D",
+    "Tossing3D",
+    "Transport3D"
+  ]
+}

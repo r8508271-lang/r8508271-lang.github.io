@@ -13,7 +13,20 @@ import time
 import urllib.error
 import urllib.request
 
-from gallery import GalleryError, check_public_text, run
+class GalleryError(RuntimeError):
+    pass
+
+
+def run(command, **kwargs):
+    result = subprocess.run(command, capture_output=True, text=True, **kwargs)
+    if result.returncode:
+        raise GalleryError(f"{Path(command[0]).name} failed (exit {result.returncode}); nothing further was published.")
+    return result.stdout
+
+
+def check_public_text(text):
+    if re.search(r"[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|(?:drive|docs)\.google\.com|/home/|/Users/", text, re.I):
+        raise GalleryError("Public commit text contains private contact or path information.")
 
 ACCOUNT = "r8508271-lang"
 NAME = "Anonymous Authors"
@@ -21,8 +34,8 @@ EMAIL = "328601582+r8508271-lang@users.noreply.github.com"
 REPOSITORY = "r8508271-lang/r8508271-lang.github.io"
 REMOTE = "https://github.com/" + REPOSITORY + ".git"
 IDENTITIES = {(NAME, EMAIL), (ACCOUNT, EMAIL)}
-PUBLIC_PATHS = [".gitignore", ".nojekyll", "README.md", "config.example.json", "index.html",
-                "assets", "templates", "scripts", "tests", "submission-template", "media"]
+PUBLIC_PATHS = [".gitignore", ".nojekyll", "README.md", "index.html", "app.js",
+                "styles.css", "benchmark.js", "serve.py", "package.json", "assets", "data", "film", "scripts"]
 
 
 def git(root: Path, *args: str, **kwargs) -> str:
@@ -85,6 +98,14 @@ def github_request(path: str, token: str, *, data: dict | None = None, method: s
 def credential(root: Path) -> str:
     token = os.environ.get("GALLERY_GITHUB_TOKEN", "")
     if not token:
+        # Select the anonymous CLI account explicitly without switching the user's default.
+        try:
+            cli = subprocess.run(["gh", "auth", "token", "--hostname", "github.com", "--user", ACCOUNT],
+                                 capture_output=True, text=True, timeout=20)
+            token = cli.stdout.strip() if cli.returncode == 0 else ""
+        except (OSError, subprocess.TimeoutExpired):
+            token = ""
+    if not token:
         env = {**os.environ, "GIT_TERMINAL_PROMPT": "0", "GCM_INTERACTIVE": "never"}
         result = subprocess.run(["git", "-C", str(root), "credential", "fill"],
             input=f"protocol=https\nhost=github.com\nusername={ACCOUNT}\n\n",
@@ -140,6 +161,11 @@ def check_scheduled_tree(root: Path) -> None:
 def publish(root: Path, *, scheduled: bool = False) -> None:
     validate_origin(root)
     if scheduled:
+        raise GalleryError("Scheduled Drive publishing is disabled for this submission snapshot.")
+    import sys
+    run([sys.executable, str(root / "scripts/check_site.py")])
+    run(["node", "--test", str(root / "scripts/benchmark.test.js")])
+    if scheduled:
         check_scheduled_tree(root)
     if not pending_changes(root):
         print("No changes; skipped GitHub authentication, commit and deployment.")
@@ -168,6 +194,8 @@ def publish(root: Path, *, scheduled: bool = False) -> None:
         for key, value in [("user.name", NAME), ("user.email", EMAIL), ("commit.gpgsign", "false"),
                            ("tag.gpgsign", "false")]:
             git(root, "config", "--local", key, value)
+        # Include deletions of retired gallery files as well as the new allowlisted files.
+        git(root, "add", "-u")
         paths = [p for p in PUBLIC_PATHS if (root / p).exists()]
         git(root, "add", "-A", "--", *paths)
         tracked = git(root, "ls-files", "-z").split("\0")
@@ -180,7 +208,7 @@ def publish(root: Path, *, scheduled: bool = False) -> None:
             if full.is_file() and full.stat().st_size >= 95 * 1024 * 1024:
                 raise GalleryError("A tracked file exceeds 95 MiB.")
         if git(root, "diff", "--cached", "--name-only").strip():
-            git(root, *opts, "-c", "commit.gpgsign=false", "commit", "-m", "Update anonymous video gallery", env=env)
+            git(root, *opts, "-c", "commit.gpgsign=false", "commit", "-m", "Update anonymous submission website", env=env)
         if not has_head(root):
             raise GalleryError("There is no content to publish.")
         audit(root)
@@ -206,3 +234,15 @@ def publish(root: Path, *, scheduled: bool = False) -> None:
             print("Pages is configured: https://r8508271-lang.github.io/ (deployment may take a few minutes).")
     except (urllib.error.URLError, ValueError):
         print("Files were pushed. Enable Pages in repository Settings → Pages → Deploy from a branch → main → / (root).")
+
+
+if __name__ == "__main__":
+    import fcntl
+    root = Path(__file__).resolve().parents[1]
+    (root / ".local").mkdir(exist_ok=True)
+    with (root / ".local/run.lock").open("a") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        try:
+            publish(root)
+        except GalleryError as error:
+            raise SystemExit(str(error)) from None

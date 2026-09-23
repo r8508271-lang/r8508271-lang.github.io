@@ -2,76 +2,118 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="referrer" content="no-referrer">
-  <title>Gallery</title>
-  <link rel="stylesheet" href="assets/gallery.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Coding Agents for Generalized Task and Motion Planning Problems</title>
+  <meta name="description" content="A study of coding agents for generalized task and motion planning across 28 simulated environments. Videos, experimental setup, and complete benchmark results.">
+  <meta property="og:title" content="Coding Agents for Generalized Task and Motion Planning Problems">
+  <meta property="og:description" content="Experimental setup, example behaviors, and results across 28 simulated environments.">
+  <meta property="og:image" content="https://r8508271-lang.github.io/assets/posters/study-mosaic-240.jpg">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#66418b">
+  <link rel="stylesheet" href="styles.css?v=submission-1">
+  <script type="module" src="app.js?v=submission-1"></script>
 </head>
 <body>
-  <header class="page-header">
-    <h1>Gallery</h1>
-  </header>
-  <main id="gallery" aria-label="Video gallery">
-    <article class="entry" id="result-e0c7fe5135ab6e28">
-      <video controls playsinline muted preload="none" poster="media/85b7645c9ba7ab8d7c2ced1056883cf5f6bbbb00a26c04cbebd295eb21cc9a76.jpg" aria-label="Recovering from failed grasps">
-        <source src="media/85b7645c9ba7ab8d7c2ced1056883cf5f6bbbb00a26c04cbebd295eb21cc9a76.mp4" type="video/mp4">
-        Your browser does not support embedded video. <a href="media/85b7645c9ba7ab8d7c2ced1056883cf5f6bbbb00a26c04cbebd295eb21cc9a76.mp4">Download the video</a>.
-      </video>
-      <div class="entry-copy">
-        <p class="entry-number">01</p>
-        <h2>Recovering from failed grasps</h2>
-        <dl class="metadata"><div><dt>Method</dt><dd>White box</dd></div><div><dt>Replicate seed</dt><dd>444</dd></div><div><dt>Eval seed</dt><dd>2280267259890034898</dd></div><div><dt>Episode</dt><dd>25</dd></div></dl>
-        <p class="description">The robot recovers from failed grasps by retrying empty grasps and releasing accidental multi-block grasps before continuing to sort the cluttered cubes.</p>
-      </div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav">
+  <div class="identity">
+    <a class="wordmark" href="#top">AgenticGenTAMP</a>
+  </div>
+  <nav aria-label="Main navigation"><a href="#overview">Setup</a><a href="#gallery">Gallery</a><a href="#video">Video</a><a href="#results">Results</a><a href="assets/paper.pdf?v=submission-4501" target="_blank" rel="noopener">Paper ↗</a></nav>
+</header>
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <video id="hero-video" class="hero-video" muted loop playsinline preload="none" poster="assets/posters/study-mosaic-240.jpg" aria-hidden="true"><source src="assets/hero.mp4" type="video/mp4"></video>
+  <div class="hero-shade"></div>
+  <div class="hero-content">
+    <h1 id="hero-title">Coding Agents for Generalized Task and Motion Planning Problems</h1>
+    <p class="hero-summary">We evaluate coding agents that synthesize reusable policies for task and motion planning across 28 simulated environments.</p>
+    <div class="hero-actions">
+      <a class="button" href="assets/paper.pdf?v=submission-4501" target="_blank" rel="noopener">Paper <span aria-hidden="true">↗</span></a>
+      <a class="button" href="https://anonymous.4open.science/r/agentamp-3481/" target="_blank" rel="noopener">Code <span aria-hidden="true">↗</span></a>
+      <a class="button" href="#results">Results <span aria-hidden="true">↓</span></a>
+      <a class="button" href="#gallery">Gallery <span aria-hidden="true">↓</span></a>
+    </div>
+  </div>
+  <div class="hero-bottom"><span>Example rollouts from the study</span><button id="motion-toggle" aria-label="Play background video">Play background</button></div>
+</section>
+<main id="main">
+<section class="section setup" id="overview" aria-labelledby="setup-title">
+  <h2 id="setup-title">Generalized task and motion planning</h2>
+  <div class="setup-intro">
+    <p>In task and motion planning (TAMP), discrete choices—such as which object to manipulate, which tool to use, or which subgoal to pursue—are coupled to continuous geometric, kinematic, and dynamic constraints.</p>
+    <p><strong>Generalized TAMP</strong> exploits regularities across problem instances to produce reusable solutions, for example by learning samplers, feasibility predictors, search heuristics, or abstractions. In this paper, we study coding agents as a synthesis method that produces a single programmatic policy for each environment: <strong>AgenticGenPlan</strong>.</p>
+    <p>Within an environment, instances may differ in object count, configuration, and geometry, while sharing the state and action spaces, transition model, and reward function. States are fully observed and object-centric; perception and language understanding are outside the scope of this study.</p>
+  </div>
+  <figure class="instance-example">
+    <div class="instance-grid">
+      <div><img src="assets/setup/obstruction-26.jpg" width="480" height="360" alt="Obstruction task with one obstacle" loading="lazy"><span>1 obstacle</span></div>
+      <div><img src="assets/setup/obstruction-92.jpg" width="480" height="360" alt="Obstruction task with two obstacles" loading="lazy"><span>2 obstacles</span></div>
+      <div><img src="assets/setup/obstruction-84.jpg" width="480" height="360" alt="Obstruction task with four obstacles" loading="lazy"><span>4 obstacles</span></div>
+    </div>
+    <figcaption>Different instances of the Obstruction task. The same program must retrieve the target block across these configurations.</figcaption>
+  </figure>
+  <h3 class="setup-subheading">Experimental setup</h3>
+  <div class="setup-grid">
+    <article>
+      <h4>Strict access restrictions in the main setting</h4>
+      <p>The agent receives a description of the task, observation and action spaces, and goal. It chooses its own simulator tests within a <strong>$20 model-usage budget per synthesis run</strong>.</p>
+      <ul class="setup-constraints">
+        <li><strong>No network or host-filesystem access.</strong> Code runs in an isolated Docker container with a separate filesystem.</li>
+        <li><strong>No environment source code.</strong> A client API provides reset, step, and rendering. The simulator implementation runs outside the container and is inaccessible to the agent.</li>
+        <li><strong>Only Python, NumPy, and SciPy.</strong> The agent must generate its own end-to-end policy.</li>
+        <li><strong>No supplied TAMP components.</strong> We provide no hand-written predicates, operators, samplers, or skills.</li>
+      </ul>
+      <p class="setup-audit">We test this isolation through red-teaming: attempts to recover source code, import forbidden libraries, access host files, or reach the network.</p>
     </article>
-    <article class="entry" id="result-d5d7d15b00e62bf1">
-      <video controls playsinline muted preload="none" poster="media/c2868c42c02950bc24921882f85a7f67ae0a54ce8d5cfed67a0f5366895359eb.jpg" aria-label="Pouring with the entire tray">
-        <source src="media/c2868c42c02950bc24921882f85a7f67ae0a54ce8d5cfed67a0f5366895359eb.mp4" type="video/mp4">
-        Your browser does not support embedded video. <a href="media/c2868c42c02950bc24921882f85a7f67ae0a54ce8d5cfed67a0f5366895359eb.mp4">Download the video</a>.
-      </video>
-      <div class="entry-copy">
-        <p class="entry-number">02</p>
-        <h2>Pouring with the entire tray</h2>
-        <dl class="metadata"><div><dt>Method</dt><dd>White box</dd></div><div><dt>Replicate seed</dt><dd>444</dd></div><div><dt>Eval seed</dt><dd>5070999126167511316</dd></div><div><dt>Episode</dt><dd>3</dd></div></dl>
-        <p class="description">The robot grasps the rim of the yellow tray, lifts the entire tray, and tilts it above the green tray to transfer the objects.</p>
-      </div>
+    <article>
+      <h4>Held-out evaluation</h4>
+      <p>The resulting program is <strong>frozen</strong>. It selects actions with <strong>no further coding-agent or LLM calls</strong>.</p>
+      <ul class="setup-constraints">
+        <li><strong>Five independent runs</strong> per method and environment.</li>
+        <li><strong>The same 100 held-out instances</strong> per environment for all programs and planners, sampled from the initial-state distribution used during synthesis.</li>
+        <li><strong>Evaluation seeds checked for overlap.</strong> Seeds are generated randomly, and we verify afterward that none were used during synthesis.</li>
+        <li><strong>60 seconds per evaluation instance</strong> for every method.</li>
+      </ul>
     </article>
-    <article class="entry" id="result-96145507c5cbc689">
-      <video controls playsinline muted preload="none" poster="media/c0a0b65ee8383e9fcf2840020808f78a4457ae90885a63ff4737b46db97f6630.jpg" aria-label="Moving objects one at a time">
-        <source src="media/c0a0b65ee8383e9fcf2840020808f78a4457ae90885a63ff4737b46db97f6630.mp4" type="video/mp4">
-        Your browser does not support embedded video. <a href="media/c0a0b65ee8383e9fcf2840020808f78a4457ae90885a63ff4737b46db97f6630.mp4">Download the video</a>.
-      </video>
-      <div class="entry-copy">
-        <p class="entry-number">03</p>
-        <h2>Moving objects one at a time</h2>
-        <dl class="metadata"><div><dt>Method</dt><dd>White box</dd></div><div><dt>Replicate seed</dt><dd>444</dd></div><div><dt>Eval seed</dt><dd>4139675076275876818</dd></div><div><dt>Episode</dt><dd>23</dd></div></dl>
-        <p class="description">The robot pinches small objects between its fingers and transports them one at a time over the divider, retrying objects that slip.</p>
-      </div>
-    </article>
-    <article class="entry" id="result-3161fc7ad0a5229e">
-      <video controls playsinline muted preload="none" poster="media/5bacbefbda9a6d42c990873f7583153da9e011b82530bd3935bd7659918a239c.jpg" aria-label="A windmill-like hook strategy">
-        <source src="media/5bacbefbda9a6d42c990873f7583153da9e011b82530bd3935bd7659918a239c.mp4" type="video/mp4">
-        Your browser does not support embedded video. <a href="media/5bacbefbda9a6d42c990873f7583153da9e011b82530bd3935bd7659918a239c.mp4">Download the video</a>.
-      </video>
-      <div class="entry-copy">
-        <p class="entry-number">04</p>
-        <h2>A windmill-like hook strategy</h2>
-        <dl class="metadata"><div><dt>Method</dt><dd>White box</dd></div><div><dt>Replicate seed</dt><dd>24</dd></div><div><dt>Eval seed</dt><dd>5716358502980765232</dd></div><div><dt>Episode</dt><dd>5</dd></div></dl>
-        <p class="description">The robot rotates the L-shaped hook through a windmill-like motion to manipulate the target objects.</p>
-      </div>
-    </article>
-    <article class="entry" id="result-f5c80e42652d27cf">
-      <video controls playsinline muted preload="none" poster="media/8af2427fc43d19c82ca4e21519d85ace049c15da82c892acd1400830c7286c04.jpg" aria-label="Catapult-style tossing">
-        <source src="media/8af2427fc43d19c82ca4e21519d85ace049c15da82c892acd1400830c7286c04.mp4" type="video/mp4">
-        Your browser does not support embedded video. <a href="media/8af2427fc43d19c82ca4e21519d85ace049c15da82c892acd1400830c7286c04.mp4">Download the video</a>.
-      </video>
-      <div class="entry-copy">
-        <p class="entry-number">05</p>
-        <h2>Catapult-style tossing</h2>
-        <dl class="metadata"><div><dt>Method</dt><dd>Black box</dd></div><div><dt>Replicate seed</dt><dd>42</dd></div><div><dt>Eval seed</dt><dd>5070999126167511316</dd></div><div><dt>Episode</dt><dd>3</dd></div></dl>
-        <p class="description">The robot picks up objects and throws them over a barrier into the target bin.</p>
-      </div>
-    </article>
-  </main>
+  </div>
+  <p class="setup-source"><strong>+ source comparison.</strong> In this additional Claude Code setting, the agent can inspect the environment implementation and import its helper functions, including inverse kinematics solvers. During synthesis, it can also set arbitrary simulator states.</p>
+  <p class="benchmark-scope">The study includes 25 KinDER environments across four families and three PDDLStream domains: Packing, Blocked, and Rovers. <a href="#environments">View each environment and the exact description given to the agent.</a></p>
+  <p class="paper-reference">Protocol: <a href="assets/paper.pdf?v=submission-4501#page=2" target="_blank" rel="noopener">Sections II-C and III-A</a> and <a href="assets/paper.pdf?v=submission-4501#page=4" target="_blank" rel="noopener">Section IV-A</a>.</p>
+  <div class="stats"><div><strong>28</strong><span>simulated environments</span></div><div><strong>700</strong><span>synthesized programs</span></div><div><strong>70,000</strong><span>evaluation episodes</span></div></div>
+</section>
+<section class="gallery-section" aria-labelledby="gallery-title"><div class="section gallery" id="gallery">
+  <div class="section-heading"><h2 id="gallery-title">Gallery</h2><p>Examples of tool use, task strategies, and failure recovery in the synthesized programs. Main setting uses the simulator API; + source also provides the environment source code.</p></div>
+  <label class="gallery-speed">Playback speed <select id="gallery-speed"><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option><option value="8" selected>8×</option></select></label>
+  <div class="gallery-grid" id="gallery-grid"></div>
+  <noscript><p>Enable JavaScript to view the interactive gallery and results, or <a href="assets/project-video.mp4?v=a9fc3fad1bcc">watch the project video</a> and <a href="data/benchmark.csv">download the results</a>.</p></noscript>
+</div></section>
+<section class="section video-section" id="video" aria-labelledby="video-title">
+  <div class="section-heading"><h2 id="video-title">Project video</h2><p>An overview of the task setup, a synthesis example, experimental results, and selected behaviors.</p></div>
+  <video id="project-video" controls playsinline preload="metadata" poster="assets/posters/project-video.jpg?v=a9fc3fad1bcc" aria-label="Project video: Coding Agents for Generalized Task and Motion Planning Problems"><source src="assets/project-video.mp4?v=a9fc3fad1bcc" type="video/mp4">Your browser cannot play this video. <a href="assets/project-video.mp4?v=a9fc3fad1bcc">Download the MP4</a>.</video>
+</section>
+<section class="section leaderboard" id="results"><div class="section-heading"><div><h2>Experimental results</h2></div><div><p>Mean success rates over 100 held-out instances per run, averaged across five runs and the selected environments.</p><a class="inline-link" href="data/benchmark.csv" download>Download the results <span>↓</span></a></div></div>
+<div class="leader-toolbar"><div class="segmented" role="group" aria-label="Evaluation coverage"><button class="active" data-scope="all" aria-pressed="true">All 28 environments</button><button data-scope="shared" aria-pressed="false">Planner subset · 16</button></div><label class="select-label">Family <select id="family-filter"><option value="all">All families</option><option>Kinematic 2D</option><option>Dynamic 2D</option><option>Kinematic 3D</option><option>Dynamic 3D</option><option>PDDLStream</option></select></label></div>
+<p class="scope-note" id="scope-note" aria-live="polite">Loading the paper’s results…</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Experimental results, scroll horizontally on smaller screens"><table class="ranking"><caption class="sr-only">Mean held-out success rate by method. The future coding agents row is a placeholder with an unknown score.</caption><thead><tr><th scope="col">Method / backend</th><th scope="col">Setting / access</th><th scope="col">Coverage</th><th scope="col" aria-sort="descending"><button id="sort-score">Mean success <span aria-hidden="true">↓</span></button></th></tr></thead>
+<tbody class="future-methods"><tr><td><span class="method-name">Future coding agents</span><span class="backend">More and better in the future</span></td><td>—</td><td class="coverage">—</td><td class="score-cell"><span class="score-number" aria-label="Unknown">?</span></td></tr></tbody>
+<tbody id="ranking-body"></tbody></table></div>
+<div class="leader-note"><p>Equal-environment averages from Tables I–II of the submitted paper. All environment means use the printed two-decimal precision. The source-access reference is listed separately. Missing planner results are excluded from its average.</p><a href="assets/paper.pdf?v=submission-4501#page=5" target="_blank" rel="noopener">Read the tables ↗</a></div>
+</section>
+<section class="results-section" id="environments"><div class="section"><div class="section-heading"><div><h2>Results by environment</h2></div><p>Select an environment to play the policy examples together. Method results and the text supplied to the agent appear below the videos.</p></div><div class="explorer"><div class="env-list" role="group" aria-label="Select an environment" id="env-list"></div><div class="env-detail"><div class="env-title"><div><p class="eyebrow" id="env-family"></p><h3 id="env-name"></h3></div></div>
+<section class="policy-comparison" id="policy-comparison" aria-labelledby="policy-comparison-title" hidden><h4 id="policy-comparison-title">Synthesized policy examples</h4><p id="policy-comparison-note"></p><button class="policy-play" id="play-policies">Replay together</button><div class="policy-grid" id="policy-grid"></div></section>
+<section class="env-measurements" aria-labelledby="env-results-title"><h4 id="env-results-title">Method results</h4><div class="env-bars" id="env-bars"></div><p class="fine">Mean success over 100 held-out instances per run; brackets give min–max across five runs.</p></section>
+<section class="env-description" aria-labelledby="env-description-title">
+  <div class="env-description-heading"><h4 id="env-description-title">Text supplied to the agent</h4><a id="env-description-raw" href="data/environment-descriptions/Tossing3D.md" target="_blank" rel="noopener">Original Markdown ↗</a></div>
+  <p class="env-description-note">In the main setting, the agent receives text and interactive simulator access, without demonstration videos. The text below is verbatim from the archived experiment record.</p>
+  <div id="env-description-content" class="description-document" role="region" tabindex="0" aria-labelledby="env-description-title" aria-busy="true"><p>Loading the environment description…</p></div>
+</section>
+</div></div>
+<div class="insights"><article class="insight"><h3>Effect of source access</h3><p>On SweepIntoDrawer, access to source code raises Claude Code’s mean success from 0% to 57%. The agent discovers it can use the gripper itself to sweep.</p><button class="inline-link" data-select-env="SweepIntoDrawer3D">Inspect this environment ↗</button></article><article class="insight efficiency"><h3>Computation at test time</h3>
+<div class="time-bar" data-efficiency="claude"><span>Claude Code<small>Opus 5 · Main setting</small></span><i style="--w:14.344%;--c:var(--rust)" aria-hidden="true"></i><strong>4.002 ms</strong></div>
+<div class="time-bar" data-efficiency="source"><span>Claude Code<small>Opus 5 · + source</small></span><i style="--w:100.000%;--c:#956d9b" aria-hidden="true"></i><strong>27.900 ms</strong></div>
+<p class="fine">Policy computation per action on 44 matched seeds across 13 environments where both settings achieve 100% held-out success, averaged equally across environments. <a href="assets/paper.pdf?v=submission-4501#page=5" target="_blank" rel="noopener">Table III ↗</a></p></article></div>
+</div></section>
+</main>
+<footer><div><a class="wordmark" href="#top">AgenticGenTAMP</a><p>Coding Agents for Generalized Task and Motion Planning Problems</p></div><div class="footer-links"><a href="assets/paper.pdf?v=submission-4501" target="_blank" rel="noopener">Paper ↗</a><a href="https://anonymous.4open.science/r/agentamp-3481/" target="_blank" rel="noopener">Code ↗</a><a href="https://github.com/r8508271-lang/r8508271-lang.github.io" target="_blank" rel="noopener">Website source ↗</a></div></footer>
 </body>
 </html>

@@ -1,0 +1,11 @@
+{
+  "name": "anonymous-submission-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test scripts/benchmark.test.js",
+    "check": "python3 scripts/check_site.py",
+    "start": "python3 serve.py 8770",
+    "publish": "python3 scripts/publish.py"
+  }
+}
