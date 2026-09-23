@@ -3,7 +3,7 @@
   "tables": "I–III",
   "environmentMethodEntriesChecked": 168,
   "descriptionCount": 28,
-  "policyClipCount": 76,
+  "policyClipCount": 84,
   "checks": {
     "Tables I–II": "All 168 environment/method entries, including means, min/max, and missing planner results, were compared with the submitted PDF.",
     "Table III": "Two settings; 44 matched seeds across 13 environments; 4.002 and 27.900 ms/action.",

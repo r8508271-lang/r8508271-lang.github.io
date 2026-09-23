@@ -81,7 +81,7 @@ def main():
     clips = []
     for env in examples['environments']:
         vs = env['videos']; clips.extend(vs)
-        assert 1 <= len(vs) <= 3
+        assert len(vs) == 3 and not env['unavailable']
         assert {v['method'] for v in vs} | {v['method'] for v in env['unavailable']} == CLIP_METHODS
         for key in ['instanceSeed', 'episode']:
             assert len({v['source'][key] for v in vs}) == 1
@@ -93,7 +93,7 @@ def main():
             require(clip['poster'])
             if clip['method'] == 'codex' and env['id'] in examples['codexRerunEnvironments']:
                 assert clip['source']['collection'] == 'Codex Reruns'
-    assert len(clips) == 76
+    assert len(clips) == 84
     assert {p.name for p in (ROOT / 'assets/policies').iterdir()} == {Path(v[k]).name for v in clips for k in ('video', 'poster')}
     manifest = json.loads(require('data/environment-descriptions/sources.json').read_text())
     rendered = {e['id']: e for e in json.loads(require('data/environment-descriptions.json').read_text())['environments']}
@@ -103,7 +103,7 @@ def main():
     for item in json.loads(require('data/gallery.json').read_text()):
         require(f"film/assets/clips/{item['file']}.mp4"); require(f"assets/posters/{item['file']}.jpg")
     audit = json.loads(require('data/submission-audit.json').read_text())
-    assert audit['paperSha256'] == data['source']['sha256'] and audit['policyClipCount'] == 76
-    print('PASS: anonymous links, submission PDF, 28 environments, six methods, 168 results, 76 matched policy clips, descriptions, assets, and Table III.')
+    assert audit['paperSha256'] == data['source']['sha256'] and audit['policyClipCount'] == 84
+    print('PASS: anonymous links, submission PDF, 28 environments, six methods, 168 results, 84 matched policy clips, descriptions, assets, and Table III.')
 
 if __name__ == '__main__': main()
